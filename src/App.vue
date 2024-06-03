@@ -1,5 +1,5 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import Categories from './components/Categories.vue'
 import HeaderTemp from './components/HeaderTemp.vue'
 import Footer from './components/Footer.vue'
 </script>
@@ -8,7 +8,7 @@ import Footer from './components/Footer.vue'
   <HeaderTemp />
   <div>
   </div>
-  <HelloWorld msg="Welcome to our deluxe menu!" />
+  <Categories msg="Welcome to our deluxe menu!" />
   <Footer />
 </template>
 

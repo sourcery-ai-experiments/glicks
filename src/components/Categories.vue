@@ -9,21 +9,21 @@ const count = ref(0)
 </script>
 
 <template>
-  <div class="card">
-    <button type="button" @click="count++">count is {{ count }}</button>
+  <div class="card text-pink-700 bg-white rounded-lg w-min h-min m-auto mt-1">
+    <button class="text-amber-50" type="button" @click="count++">count is {{ count }}</button>
     <p>
       Edit
       <code>components/HelloWorld.vue</code> to test HMR
     </p>
   </div>
 
-  <p>
+  <p class="test text-gray-700">
     Check out
     <a href="https://vuejs.org/guide/quick-start.html#local" target="_blank"
       >create-vue</a
     >, the official Vue + Vite starter
   </p>
-  <p>
+  <p class="test text-gray-600">
     Install
     <a href="https://github.com/vuejs/language-tools" target="_blank">Volar</a>
     in your IDE for a better DX
@@ -33,6 +33,6 @@ const count = ref(0)
 
 <style scoped>
 .read-the-docs {
-  color: #888;
+  color: #242424;
 }
 </style>
