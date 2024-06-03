@@ -24,7 +24,7 @@ const count = ref(0)
 
 <style scoped>
 div {
-  background-color: rgb(255, 236, 236);
+  background-color: rgb(255, 245, 245);
 }
 .read-the-docs {
   color: #242424;
