@@ -1,20 +1,19 @@
 <template>
-  <header class="test bg-white">
-    <nav class="mx-auto flex max-w-7xl items-center justify-between py-1 px-6 lg:px-4 md:gap-x-4" aria-label="Global">
-      <div class="flex items-center h-min md:gap-x-4 lg:gap-x-12">
-        <Logo class="test min-w-min flex-shrink-0 pt-2 pb-2">
-          <a href="#" class="-m-1.5 p-1.5 h-min flex">
-            <span class="sr-only">Glicks Bakery</span>
-            <img class="test h-20 md:h-28 lg:h-28 w-auto min-w-fit rounded-full" src="../assets/logo-y.png" alt="" />
-          </a>
-        </Logo>
-        <div class="hidden md:flex gap-x-2 lg:gap-x-11">
-          <a v-for="item in navigation" :key="item.name" :href="item.href"
-            class="test text-base font-extrabold font-cherrySwashScript leading-6 h-min rounded-md py-4 md:px-1 px-2 text-gray-900 hover:bg-amber-100 hover:text-black flex-shrink-0">{{
-              item.name }}</a>
-        </div>
+  <header class="bg-white">
+    <nav class="flex items-center justify-between py-3 px-4 lg:px-6" aria-label="Main navigation">
+      <Logo class="min-w-min flex-shrink-0 p-2 md:p-4 -mr-24">
+        <a href="#" class="-m-1.5 p-1.5 h-min flex items-center">
+          <span class="sr-only">Glicks Bakery</span>
+          <img class="h-20 md:h-28 lg:h-28 w-auto min-w-fit rounded-full" src="../assets/logo-y.png" alt="Glicks Bakery" />
+          <span class="flex md:hidden ml-2 text-amber-700 text-2xl font-cherrySwashScript">Glicks Bakery</span>
+        </a>
+      </Logo>
+      <div class="hidden md:flex gap-x-6 lg:gap-x-12 justify-between mx-auto">
+        <a v-for="item in navigation" :key="item.name" :href="item.href"
+          class="text-xl lg:text-2xl font-extrabold font-cherrySwashScript leading-6 h-min rounded-md py-3 px-2 lg:px-3 text-gray-900 hover:bg-amber-100 hover:text-black flex-shrink-0">{{
+            item.name }}</a>
       </div>
-      <div class="flex md:hidden">
+      <div class="flex">
         <button type="button"
           class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-white bg-rose-300 hover:bg-rose-400 active:bg-rose-500"
           @click="mobileMenuOpen = true">
@@ -22,13 +21,8 @@
           <Bars3Icon class="h-6 w-6" aria-hidden="true" />
         </button>
       </div>
-      <div class="hidden md:flex ">
-        <a href="#"
-          class="text-sm font-semibold leading-6 rounded-md py-2 px-3 text-gray-900 hover:text-gray-800 active:text-gray-900 bg-amber-100 hover:bg-amber-200 active:bg-amber-300">Log
-          in <span aria-hidden="true">&rarr;</span></a>
-      </div>
     </nav>
-    <Dialog class="lg:hidden" @close="mobileMenuOpen = false" :open="mobileMenuOpen">
+    <Dialog @close="mobileMenuOpen = false" :open="mobileMenuOpen">
       <div class="fixed inset-0 z-10" />
       <DialogPanel
         class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
@@ -51,10 +45,10 @@
                 class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-amber-100 hover:text-black">{{
                   item.name }}</a>
             </div>
-            <div class="py-6">
-              <a href="#"
-                class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-amber-100 hover:text-black">Log
-                in</a>
+            <div class="space-y-2 py-6">
+              <a href="#contact-us" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-green-200 hover:text-black">
+                Contact Us
+              </a>
             </div>
           </div>
         </div>
@@ -70,10 +64,10 @@ import { Dialog, DialogPanel } from '@headlessui/vue';
 import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
 
 const navigation = [
-  { name: 'Cakes', href: '#' },
-  { name: 'Cookies', href: '#' },
-  { name: 'Kedeishim', href: '#' },
-  { name: 'Contact us', href: '#' },
+  { name: 'Cakes', href: '#cakes' },
+  { name: 'Cookies', href: '#cookies' },
+  { name: 'Kedeishim', href: '#kedeishim' },
+  { name: 'Specials', href: '#special' },
 ]
 
 const mobileMenuOpen = ref(false)
