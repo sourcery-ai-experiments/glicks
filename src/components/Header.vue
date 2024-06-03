@@ -1,16 +1,16 @@
 <template>
-  <header class="test bg-white">
-    <nav class="flex items-center justify-between py-3 px-4 lg:px-6" aria-label="Global">
-      <Logo class="test min-w-min flex-shrink-0 p-2 md:p-4 -mr-24">
+  <header class="bg-white">
+    <nav class="flex items-center justify-between py-3 px-4 lg:px-6" aria-label="Main navigation">
+      <Logo class="min-w-min flex-shrink-0 p-2 md:p-4 -mr-24">
         <a href="#" class="-m-1.5 p-1.5 h-min flex items-center">
           <span class="sr-only">Glicks Bakery</span>
-          <img class="test h-20 md:h-28 lg:h-28 w-auto min-w-fit rounded-full" src="../assets/logo-y.png" alt="" />
-          <span class="test flex md:hidden ml-2 text-amber-700 text-2xl font-cherrySwashScript">Glicks Bakery</span>
+          <img class="h-20 md:h-28 lg:h-28 w-auto min-w-fit rounded-full" src="../assets/logo-y.png" alt="Glicks Bakery" />
+          <span class="flex md:hidden ml-2 text-amber-700 text-2xl font-cherrySwashScript">Glicks Bakery</span>
         </a>
       </Logo>
       <div class="hidden md:flex gap-x-6 lg:gap-x-12 justify-between mx-auto">
         <a v-for="item in navigation" :key="item.name" :href="item.href"
-          class="test text-xl lg:text-2xl font-extrabold font-cherrySwashScript leading-6 h-min rounded-md py-3 px-2 lg:px-3 text-gray-900 hover:bg-amber-100 hover:text-black flex-shrink-0">{{
+          class="text-xl lg:text-2xl font-extrabold font-cherrySwashScript leading-6 h-min rounded-md py-3 px-2 lg:px-3 text-gray-900 hover:bg-amber-100 hover:text-black flex-shrink-0">{{
             item.name }}</a>
       </div>
       <div class="flex">
@@ -22,7 +22,7 @@
         </button>
       </div>
     </nav>
-    <Dialog class="lg:hidden" @close="mobileMenuOpen = false" :open="mobileMenuOpen">
+    <Dialog @close="mobileMenuOpen = false" :open="mobileMenuOpen">
       <div class="fixed inset-0 z-10" />
       <DialogPanel
         class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
@@ -45,7 +45,7 @@
                 class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-amber-100 hover:text-black">{{
                   item.name }}</a>
             </div>
-            <div class="test space-y-2 py-6">
+            <div class="space-y-2 py-6">
               <a href="#contact-us" class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-green-200 hover:text-black">
                 Contact Us
               </a>

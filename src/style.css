@@ -73,8 +73,8 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #eeeeee;
-  color: #213547;
+  background-color:#f0e68c;  
+  color: #242424;
 }
 button:hover {
   background-color: antiquewhite;

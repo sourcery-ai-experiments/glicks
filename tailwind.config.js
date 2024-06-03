@@ -5,15 +5,16 @@ export default {
     './src/**/*.{vue,js,ts,jsx,tsx}',
   ],
   theme: {
-    fontFamily: {
-      cursive: ['Comic Sans MS', 'cursive'],
-      luxuryScript: ['LuxuriousScript', 'sans-serif'],
-      petitFormalScript: ['PetitFormalScript', 'sans-serif'],
-      septemberScript: ['SeptemberScript', 'cursive'],
-      cherrySwashScript: ['CherrySwash', 'cursive'],
-      chopinScript: ['ChopinScript', 'cursive'],
+    extend: {
+      fontFamily: {
+        cursive: ['Comic Sans MS', 'cursive'],
+        luxuryScript: ['LuxuriousScript', 'cursive'],
+        petitFormalScript: ['PetitFormalScript', 'cursive'],
+        septemberScript: ['SeptemberScript', 'cursive'],
+        cherrySwashScript: ['CherrySwash', 'cursive'],
+        chopinScript: ['ChopinScript', 'cursive'],
+      }
     },
-    extend: {},
   },
   plugins: [],
 }
