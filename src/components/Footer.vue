@@ -4,7 +4,7 @@
       <div class="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32">
         <div class="xl:grid xl:grid-cols-3 xl:gap-8">
           <div class="space-y-8">
-            <img class="h-14 rounded-full" src="/favicon-glicks.png" alt="Glicks" />
+            <img class="h-14 rounded-full" src="/favicon/favicon-glicks.png" alt="Glicks" />
             <p class="text-sm leading-6 text-gray-600">Making the world a better place through constructing elegant hierarchies.</p>
             <div class="flex space-x-6">
               <a v-for="item in navigation.social" :key="item.name" :href="item.href" class="text-gray-400 hover:text-gray-500">
