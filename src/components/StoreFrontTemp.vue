@@ -48,7 +48,7 @@
           </div>
 
           <div class="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-0 lg:gap-x-8">
-            <div v-for="product in trendingProducts" :key="product.id"
+            <div v-for="product in items" :key="product.id"
               class="group relative bg-white w-56 rounded-lg shadow-md pb-3">
               <div class="h-56 w-full overflow-hidden rounded-md group-hover:opacity-75 lg:h-72 xl:h-80 ">
                 <img :src="product.imageSrc" :alt="product.imageAlt" class="h-full w-full object-cover object-center" />
@@ -101,44 +101,8 @@
 
 <script setup>
 import { ref } from 'vue'
+import items from './database.js'
 
-const items = ref([
-  {
-    name: "Cakes",
-    href: '#',
-    imageSrc: '/images/perfect_chocolate_cake_crop.jpg',
-    imageAlt: 'Woman wearing a comfortable cotton t-shirt.',
-  },
-  {
-    name: "Cookies",
-    href: '#',
-    imageSrc: '/images/perfect_chocolate_cake_crop.jpg',
-    imageAlt: 'Man wearing a comfortable and casual cotton t-shirt.',
-  },
-  {
-    name: 'Shabbos package',
-    href: '#',
-    imageSrc: '/images/perfect_chocolate_cake_crop.jpg',
-    imageAlt: 'Person sitting at a wooden desk with paper note organizer, pencil and tablet.',
-  },
-])
-const trendingProducts = ref([
-  {
-    id: 1,
-    name: 'Classic Chocolate Cake',
-    color: 'Classic and good!',
-    price: '$25',
-    href: '#',
-    imageSrc: '/images/perfect_chocolate_cake_crop.jpg',
-    imageAlt: 'Perfect crop of classic chocolate cake.',
-    description: {
-      text: 'Placeholder for descriptive text for the item',
-      Allergens: 'Contains: eggs, wheat',
-      category: 'Cake',
-    }
-  },
-  // More products...
-])
 const perks = ([
   {
     name: 'Same day delivery',
