@@ -1,5 +1,5 @@
 <script setup>
-import Categories from './components/Categories.vue'
+import Filters from './components/Filters.vue'
 import HeaderTemp from './components/Header.vue'
 import StoreFrontTemp from './components/StoreFrontTemp.vue'
 import Footer from './components/Footer.vue'
@@ -7,6 +7,7 @@ import Footer from './components/Footer.vue'
 
 <template>
   <HeaderTemp />
+  <Filters />
   <StoreFrontTemp />
   <Footer />
 </template>

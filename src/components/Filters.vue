@@ -1,17 +1,3 @@
-<!--
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
--->
 <template>
     <div class="bg-white">
       <!-- Mobile filter dialog -->
@@ -58,12 +44,7 @@
           </div>
         </Dialog>
       </TransitionRoot>
-  
-      <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <h1 class="text-3xl font-bold tracking-tight text-gray-900">Workspace sale</h1>
-        <p class="mt-4 max-w-xl text-sm text-gray-700">Our thoughtfully designed workspace objects are crafted in limited runs. Improve your productivity and organization with these sale items before we run out.</p>
-      </div>
-  
+
       <!-- Filters -->
       <section aria-labelledby="filter-heading">
         <h2 id="filter-heading" class="sr-only">Filters</h2>
@@ -89,7 +70,7 @@
               </transition>
             </Menu>
   
-            <button type="button" class="inline-block text-sm font-medium text-gray-700 hover:text-gray-900 sm:hidden" @click="open = true">Filters</button>
+            <button type="button" class="inline-block text-sm font-medium text-gray-700 hover:text-gray-900 bg-gray-200 hover:bg-amber-100 active:bg-amber-200 sm:hidden" @click="open = true">Filters</button>
   
             <div class="hidden sm:block">
               <div class="flow-root">
