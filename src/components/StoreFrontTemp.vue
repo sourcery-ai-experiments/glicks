@@ -5,7 +5,7 @@
         <!-- Hero section -->
         <div class="relative">
           <!-- Background image and overlap -->
-          <div class="relative mx-auto max-w-3xl h-24 px-4 pb-96 text-center">
+          <div class="relative mx-auto w-full h-24 px-4 pb-96 text-center">
             <!-- Background image and overlap -->
             <div aria-hidden="true" class="absolute inset-0 flex flex-col">
               <div class="relative w-full flex-1 bg-gray-800">
