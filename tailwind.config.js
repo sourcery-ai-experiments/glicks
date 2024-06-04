@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      screens: {
+        'xs': '412px',
+      },
       fontFamily: {
         cursive: ['Comic Sans MS', 'cursive'],
         luxuryScript: ['LuxuriousScript', 'cursive'],

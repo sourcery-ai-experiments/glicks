@@ -6,7 +6,7 @@
           <span class="sr-only">Glicks Bakery</span>
           <img class="h-20 md:h-26 lg:h-28 w-auto min-w-fit rounded-md lg:rounded-full" src="../assets/logo-y.png"
             alt="Glicks Bakery" />
-          <span class="flex lg:hidden ml-2 md:pl-2 text-amber-700 text-2xl md:text-4xl font-cherrySwashScript">Glicks Bakery</span>
+          <span class="flex lg:hidden ml-2 md:pl-2 text-amber-700 text-xl xs:text-2xl md:text-4xl font-cherrySwashScript">Glicks Bakery</span>
         </a>
       </Logo>
       <!--Top nav items-->
