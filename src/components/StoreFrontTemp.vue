@@ -20,22 +20,21 @@
           </div>
 
           <div class="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-0 lg:gap-x-8">
-            <div v-for="product in items" :key="product.id"
+            <div v-for="item in items" :key="item.id"
               class="group relative bg-white w-56 rounded-lg shadow-md pb-3">
               <div class="h-56 w-full overflow-hidden rounded-md group-hover:opacity-75 lg:h-72 xl:h-80 ">
-                <img :src="product.imageSrc" :alt="product.imageAlt" class="h-full w-full object-cover object-center" />
+                <img :src="item.imageSrc" :alt="item.imageAlt" class="h-full w-full object-cover object-center" />
               </div>
               <h3 class="mt-4 text-sm text-gray-700">
-                <a :href="product.href">
+                <a @click="openModal(item)" type="button">
                   <span class="absolute inset-0" />
-                  {{ product.name }}
+                  {{ item.name }}
                 </a>
               </h3>
-              <p class="mt-1 text-sm text-gray-500">{{ product.color }}</p>
-              <p class="mt-1 text-sm font-medium text-gray-900">{{ product.price }}</p>
+              <p class="mt-1 text-sm text-gray-500">{{ item.color }}</p>
+              <p class="mt-1 text-sm font-medium text-gray-900">{{ item.price }}</p>
             </div>
           </div>
-
           <div class="mt-8 text-sm md:hidden">
             <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">
               Shop the item
@@ -65,6 +64,7 @@
           </div>
         </div>
       </section>
+      <ItemDialog :isOpen="open" :item="selectedItem" @update:isOpen="open = $event" />
     </main>
 
 
@@ -72,6 +72,7 @@
 </template>
 
 <script setup>
+import ItemDialog from './ItemDialog.vue';
 import { ref } from 'vue'
 import items from './database.js'
 
@@ -80,7 +81,7 @@ const perks = ([
     name: 'Same day delivery',
     imageUrl: 'https://tailwindui.com/img/ecommerce/icons/icon-calendar-light.svg',
     description:
-      'We offer a delivery service that has never been done before. Checkout today and receive your products within hours.',
+      'We offer a delivery service that has never been done before. Checkout today and receive your items within hours.',
   },
   {
     name: 'All year discount',
@@ -94,5 +95,14 @@ const perks = ([
                     relatives in Jerusalem. Because we understand and care.',
   },
 ])
+
 const open = ref(false)
+const selectedItem = ref(null)
+
+function openModal(item) {
+  console.log('Opening Modal for item: ', item)
+  selectedItem.value = item
+  open.value = true
+}
+
 </script>

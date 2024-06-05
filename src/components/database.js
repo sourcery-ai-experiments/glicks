@@ -11,9 +11,10 @@ const items = ref([
     imageAlt: 'Perfect crop of classic chocolate cake.',
     description: {
       text: 'Placeholder for descriptive text for the item',
-      Allergens: 'Contains: eggs, wheat',
-      category: 'Cake',
+      allergens: 'Contains: eggs, wheat',
+      category: ['Cake', 'Chocolate'],
     },
+    milk: false,
 },
 {
     id: 2,
@@ -25,9 +26,10 @@ const items = ref([
     imageAlt: 'Perfect crop of classic chocolate cake.',
     description: {
       text: 'Placeholder for descriptive text for the item',
-      Allergens: 'Contains: eggs, wheat',
-      category: 'Cake',
+      allergens: 'Contains: eggs, wheat',
+      category: ['Cake',],
     },
+    milk: false,
 },
 {
     id: 3,
@@ -39,9 +41,10 @@ const items = ref([
     imageAlt: 'Perfect crop of classic chocolate cake.',
     description: {
       text: 'Placeholder for descriptive text for the item',
-      Allergens: 'Contains: eggs, wheat',
-      category: 'Cake',
+      allergens: 'Contains: eggs, wheat',
+      category: ['Cake',],
     },
+    milk: false,
 }
   ])
 
