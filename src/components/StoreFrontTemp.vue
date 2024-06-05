@@ -1,54 +1,26 @@
 <template>
-  <div class="bg-white">
+  <div class="bg-[linear-gradient(0deg,_#ffffff_-18%,_#fffdfe_48%,_#f3bbbb_138%)]">
     <!-- Mobile menu -->
     <main>
       <!-- Hero section -->
-      <div class="relative">
-        <!-- Background image and overlap -->
-        <div class="relative mx-auto w-full h-24 px-4 pb-96 text-center">
-          <!-- Background image and overlap -->
-          <div aria-hidden="true" class="absolute inset-0 flex flex-col">
-            <div class="relative w-full flex-1 bg-gray-800">
-              <div class="absolute inset-0 overflow-hidden">
-                <img src="/images/main_image.png" alt="" class="h-full w-full object-cover object-center" />
-              </div>
-              <div class="absolute inset-0 bg-gray-900 opacity-50" />
-            </div>
-          </div>
+      <div class="relative w-full py-12 px-12 bg-yellow-900">
+        <div class="relative z-10 text-center py-24 md:py-48">
+          <h1 class="text-white text-center text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-display font-bold mb-12">
+            A taste you recognize</h1>
         </div>
-
-        <section aria-labelledby="item-heading" class="relative -mt-56 sm:-mt-64">
-          <h2 id="item-heading" class="sr-only">items</h2>
-          <div
-            class="mx-auto grid max-w-md h-96 grid-cols-1 gap-y-6 px-4 sm:max-w-7xl sm:grid-cols-3 sm:gap-x-6 sm:gap-y-0 sm:px-6 lg:gap-x-8 lg:px-8">
-            <div v-for="item in items" :key="item.name"
-              class="group relative w-5/6 rounded-lg bg-white shadow-lg shadow-black aspect-h-16 aspect-w-9 h-auto">
-              <div aria-hidden="true" class="absolute inset-0 overflow-hidden rounded-lg">
-                <div class="absolute inset-0 overflow-hidden group-hover:opacity-75 p-2 bg-white">
-                  <img :src="item.imageSrc" :alt="item.imageAlt"
-                    class="h-full w-full object-cover object-center rounded-lg" />
-                </div>
-              </div>
-              <div class="absolute inset-0 flex items-end rounded-lg p-6">
-                <h3 class="mt-1 font-semibold bg-amber-50 py-1 px-2 rounded-full text-lg">
-                  <a class="text-gray-700" :href="item.href">
-                    {{ item.name }}
-                  </a>
-                </h3>
-              </div>
-            </div>
-          </div>
-        </section>
+        <div
+          class="relative z-10 mx-auto max-w-4xl flex justify-between uppercase text-white font-heading tracking-widest text-sm">
+        </div><img src="/images/main_image.png" class="w-full h-full absolute inset-0 object-cover opacity-70">
       </div>
 
       <section aria-labelledby="trending-heading">
-        <div class="mx-auto max-w-7xl px-4 py-6 mt-24 sm:px-6 sm:mt-32 lg:px-8 lg:mt-32 bg-rose-50 -pt-24">
+        <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:mt-32 lg:px-8 lg:mt-32 bg-inherit -pt-24">
           <div class="md:flex md:items-center md:justify-between">
             <h2 id="favorites-heading" class="text-2xl font-bold tracking-tight text-gray-900">Popular Items</h2>
           </div>
 
           <div class="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-0 lg:gap-x-8">
-            <div v-for="product in trendingProducts" :key="product.id"
+            <div v-for="product in items" :key="product.id"
               class="group relative bg-white w-56 rounded-lg shadow-md pb-3">
               <div class="h-56 w-full overflow-hidden rounded-md group-hover:opacity-75 lg:h-72 xl:h-80 ">
                 <img :src="product.imageSrc" :alt="product.imageAlt" class="h-full w-full object-cover object-center" />
@@ -101,44 +73,8 @@
 
 <script setup>
 import { ref } from 'vue'
+import items from './database.js'
 
-const items = ref([
-  {
-    name: "Cakes",
-    href: '#',
-    imageSrc: '/images/perfect_chocolate_cake_crop.jpg',
-    imageAlt: 'Woman wearing a comfortable cotton t-shirt.',
-  },
-  {
-    name: "Cookies",
-    href: '#',
-    imageSrc: '/images/perfect_chocolate_cake_crop.jpg',
-    imageAlt: 'Man wearing a comfortable and casual cotton t-shirt.',
-  },
-  {
-    name: 'Shabbos package',
-    href: '#',
-    imageSrc: '/images/perfect_chocolate_cake_crop.jpg',
-    imageAlt: 'Person sitting at a wooden desk with paper note organizer, pencil and tablet.',
-  },
-])
-const trendingProducts = ref([
-  {
-    id: 1,
-    name: 'Classic Chocolate Cake',
-    color: 'Classic and good!',
-    price: '$25',
-    href: '#',
-    imageSrc: '/images/perfect_chocolate_cake_crop.jpg',
-    imageAlt: 'Perfect crop of classic chocolate cake.',
-    description: {
-      text: 'Placeholder for descriptive text for the item',
-      Allergens: 'Contains: eggs, wheat',
-      category: 'Cake',
-    }
-  },
-  // More products...
-])
 const perks = ([
   {
     name: 'Same day delivery',
