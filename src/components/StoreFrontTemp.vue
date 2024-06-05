@@ -12,16 +12,15 @@
           class="relative z-10 mx-auto max-w-4xl flex justify-between uppercase text-white font-heading tracking-widest text-sm">
         </div><img src="/images/main_image.png" class="w-full h-full absolute inset-0 object-cover opacity-70">
       </div>
-
-      <section aria-labelledby="trending-heading">
+      <!-- Items listed by category or filter -->
+      <section aria-labelledby="items-listed">
         <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:mt-32 lg:px-8 lg:mt-32 bg-inherit -pt-24">
           <div class="md:flex md:items-center md:justify-between">
             <h2 id="favorites-heading" class="text-2xl font-bold tracking-tight text-gray-900">Popular Items</h2>
           </div>
-
-          <div class="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-0 lg:gap-x-8">
+          <div class="mt-6 opacity-9 grid grid-cols-1 gap-y-10 sm:gap-x-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 lg:gap-x-0 justify-items-center">
             <div v-for="item in items" :key="item.id"
-              class="group relative bg-white w-56 rounded-lg shadow-md pb-3">
+              class="group relative bg-white w-5/6 rounded-lg shadow-md pb-3">
               <div class="h-56 w-full overflow-hidden rounded-md group-hover:opacity-75 lg:h-72 xl:h-80 ">
                 <img :src="item.imageSrc" :alt="item.imageAlt" class="h-full w-full object-cover object-center" />
               </div>
@@ -73,8 +72,14 @@
 
 <script setup>
 import ItemDialog from './ItemDialog.vue';
-import { ref } from 'vue'
-import items from './database.js'
+import { ref, onMounted } from 'vue'
+import data from '../assets/data/database.json'
+
+const items = ref()
+
+onMounted(() => {
+  items.value = data.items
+})
 
 const perks = ([
   {

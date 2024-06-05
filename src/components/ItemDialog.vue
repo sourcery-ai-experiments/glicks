@@ -1,5 +1,5 @@
 <template>
-  <TransitionRoot :show="isOpen" as="template">
+  <TransitionRoot :show="isOpen" as="template" v-if="isOpen">
     <Dialog as="div" @close="closeModal" class="relative z-10">
       <TransitionChild
         as="template"
