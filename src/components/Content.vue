@@ -125,6 +125,7 @@ function handleCategoriesUpdate(categories) {
   console.log(selectedCategories.value[0])
 }
 
+
 const filteredAndSortedItems = computed(() => {
   if (!items.value) return [];
 
@@ -151,7 +152,6 @@ const open = ref(false)
 const selectedItem = ref(null)
 
 function openModal(item) {
-  console.log('Opening Modal for item: ', item)
   selectedItem.value = item
   open.value = true
 }
