@@ -209,16 +209,19 @@
                       class="absolute right-0 z-10 mt-2 origin-top-right rounded-md bg-white p-4 shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <form class="space-y-4">
                         <div class="flex items-center">
-                          <input :id="`${milkOptions[1].name}`" :name="`${milkOptions[1].name}`" :value="`${milkOptions[1].name}`" type="checkbox" :checked="milkOptions[0].checked"
+                          <input :id="`${milkOptions[1].name}`" :name="`${milkOptions[1].name}`"
+                            :value="`${milkOptions[1].name}`" type="checkbox" :checked="milkOptions[0].checked"
                             v-model="milkOptions[0].checked"
                             class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
                           <label :for="`${milkOptions[1].name}`"
                             class="ml-3 whitespace-nowrap pr-6 text-sm font-medium text-gray-900">Milk</label>
-                          <input :id="`${milkOptions[1].name}`" :name="`${milkOptions[1].name}`" :value="`${milkOptions[1].name}`" type="checkbox" :checked="milkOptions[1].checked"
+                          <input :id="`${milkOptions[1].name}`" :name="`${milkOptions[1].name}`"
+                            :value="`${milkOptions[1].name}`" type="checkbox" :checked="milkOptions[1].checked"
                             v-model="milkOptions[1].checked"
                             class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
                           <label :for="`${milkOptions[1].name}`"
-                            class="ml-3 whitespace-nowrap pr-6 text-sm font-medium text-gray-900">{{ milkOptions[1].name }}</label>
+                            class="ml-3 whitespace-nowrap pr-6 text-sm font-medium text-gray-900">{{ milkOptions[1].name
+                            }}</label>
                         </div>
                       </form>
                     </PopoverPanel>
@@ -231,29 +234,37 @@
       </div>
 
       <!-- Active filters -->
-      <div class="bg-gray-100">
-        <div class="mx-auto max-w-7xl px-4 py-3 sm:flex sm:items-center sm:px-6 lg:px-8">
-          <h3 class="text-sm font-medium text-gray-500">
-            Filters
-            <span class="sr-only">, active</span>
-          </h3>
+      <div>
+        <div
+          :class="{ 'py-1': activeFilters == null, 'py-2': activeFilters != null, 'mx-auto': true, 'max-w-7xl': true, 'px-4': true, 'flex': true, 'items-center': true, 'justify-between': true, 'sm:px-6': true, 'lg:px-8': true }">
+          <div class="flex justify-start items-center">
+            <h3 class="text-sm font-medium text-gray-500">
+              Filters
+              <span class="sr-only">, active</span>
+            </h3>
 
-          <div aria-hidden="true" class="hidden h-5 w-px bg-gray-300 sm:ml-4 sm:block" />
-
-          <div class="mt-2 sm:ml-4 sm:mt-0">
-            <div class="-m-1 flex flex-wrap items-center">
-              <span v-for="activeFilter in activeFilters" :key="activeFilter.value"
-                class="m-1 inline-flex items-center rounded-full border border-gray-200 bg-white py-1.5 pl-3 pr-2 text-sm font-medium text-gray-900">
-                <span>{{ activeFilter.label }}</span>
-                <button type="button"
-                  class="ml-1 inline-flex h-5 w-5 flex-shrink-0 rounded-full p-1 -mb-0.5 text-gray-600 hover:text-gray-700 bg-gray-200 hover:bg-amber-100 active:bg-amber-200">
-                  <span class="sr-only">Remove filter for {{ activeFilter.label }}</span>
-                  <svg class="h-3 w-3" stroke="currentColor" fill="none" viewBox="0 0 8 8">
-                    <path stroke-linecap="round" stroke-width="1.5" d="M1 1l6 6m0-6L1 7" />
-                  </svg>
-                </button>
-              </span>
+            <div aria-hidden="true" class="hidden h-5 w-px bg-gray-300 sm:ml-4 sm:block" />
+            <div class="mt-2 sm:ml-4 sm:mt-0 flex justify-between">
+              <div class="-m-1 flex flex-wrap items-center">
+                <span v-for="activeFilter in activeFilters" :key="activeFilter.name"
+                  class="m-1 inline-flex items-center rounded-full border border-gray-200 bg-white py-1.5 pl-3 pr-2 text-sm font-medium text-gray-900">
+                  <span>{{ activeFilter.name }}</span>
+                  <button type="button" @click="removeFilter(activeFilter)" :value="activeFilter.name"
+                    class="ml-1 inline-flex h-5 w-5 flex-shrink-0 rounded-full p-1 -mb-0.5 text-gray-600 hover:text-gray-700 bg-gray-200 hover:bg-amber-100 active:bg-amber-200">
+                    <span class="sr-only">Remove filter for {{ activeFilter.name }}</span>
+                    <svg class="h-3 w-3" stroke="currentColor" fill="none" viewBox="0 0 8 8">
+                      <path stroke-linecap="round" stroke-width="1.5" d="M1 1l6 6m0-6L1 7" />
+                    </svg>
+                  </button>
+                </span>
+              </div>
             </div>
+          </div>
+          <div>
+            <button @click="removeFilter('clearAll')" v-if="activeFilters" 
+              class="bg-white hover:bg-amber-100 active:bg-amber-200">
+              Clear all
+            </button>
           </div>
         </div>
       </div>
@@ -322,17 +333,6 @@ const amountCheckedCategories = computed(() => {
 const checkedCategories = computed(() => {
   return categories.value.filter((category) => category.checked)
 })
-const filters = ref([
-  {
-    id: 'sizes',
-    name: 'Sizes',
-    options: [
-      { value: 's', label: 'S', checked: false },
-      { value: 'm', label: 'M', checked: false },
-      { value: 'l', label: 'L', checked: false },
-    ],
-  },
-]);
 
 const filtersVisible = ref(false)
 
@@ -346,7 +346,46 @@ function toggleFiltersMobile() {
   filtersVisibleMobile.value = !filtersVisibleMobile.value
 }
 
-const activeFilters = [{ value: 'objects', label: 'Objects' }]
+const activeFilters = computed(() => {
+  if (amountCheckedCategories.value > 0) {
+    return checkedCategories.value
+  } else if (checkedMilkOptions.value !== "Both") {
+    return [
+      {
+        name: checkedMilkOptions.value,
+        href: '#',
+        current: false,
+      },
+    ]
+  } else {
+    return null
+  }
+})
+
+function removeFilter(activeFilter) {
+  if (activeFilter == 'clearAll') {
+    categories.value.forEach((category) => {
+      category.checked = false
+    })
+    milkOptions.value[0].checked = false
+    milkOptions.value[1].checked = false
+    return
+  }
+  switch (activeFilter.name) {
+    case "Milk":
+      milkOptions.value[0].checked = false
+      break
+    case "Parve":
+      milkOptions.value[1].checked = false
+      break;
+    default:
+      categories.value.forEach((category) => {
+        if (category.name === activeFilter.name) {
+          category.checked = false
+        }
+      })
+  }
+}
 
 const emits = defineEmits(['update:categories', 'update:milk', 'update:sort'])
 
