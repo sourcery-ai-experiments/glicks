@@ -7,7 +7,6 @@ import Footer from './components/Footer.vue'
 
 <template>
   <HeaderTemp />
-  <Filters />
   <StoreFrontTemp />
   <Footer />
 </template>

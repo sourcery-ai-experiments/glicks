@@ -1,4 +1,6 @@
 <template>
+  <Filters @update:sort="handleSortUpdate" @update:milk="handleMilkOptionsUpdate"
+    @update:categories="handleCategoriesUpdate" />
   <div class="bg-[linear-gradient(0deg,_#ffffff_-18%,_#fffdfe_48%,_#f3bbbb_138%)]">
     <!-- Mobile menu -->
     <main>
@@ -18,9 +20,9 @@
           <div class="md:flex md:items-center md:justify-between">
             <h2 id="favorites-heading" class="text-2xl font-bold tracking-tight text-gray-900">Popular Items</h2>
           </div>
-          <div class="mt-6 opacity-9 grid grid-cols-1 gap-y-10 sm:gap-x-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 lg:gap-x-0 justify-items-center">
-            <div v-for="item in items" :key="item.id"
-              class="group relative bg-white w-5/6 rounded-lg shadow-md pb-3">
+          <div
+            class="mt-6 opacity-9 grid grid-cols-1 gap-y-10 sm:gap-x-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 lg:gap-x-0 justify-items-center">
+            <div v-for="item in filteredAndSortedItems" :key="item.id" class="group relative bg-white w-5/6 rounded-lg shadow-md pb-3">
               <div class="h-56 w-full overflow-hidden rounded-md group-hover:opacity-75 lg:h-72 xl:h-80 ">
                 <img :src="item.imageSrc" :alt="item.imageAlt" class="h-full w-full object-cover object-center" />
               </div>
@@ -33,12 +35,6 @@
               <p class="mt-1 text-sm text-gray-500">{{ item.color }}</p>
               <p class="mt-1 text-sm font-medium text-gray-900">{{ item.price }}</p>
             </div>
-          </div>
-          <div class="mt-8 text-sm md:hidden">
-            <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">
-              Shop the item
-              <span aria-hidden="true"> &rarr;</span>
-            </a>
           </div>
         </div>
       </section>
@@ -71,14 +67,16 @@
 </template>
 
 <script setup>
+import Filters from './Filters.vue';
 import ItemDialog from './ItemDialog.vue';
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed, watch } from 'vue'
 import data from '../assets/data/database.json'
 
 const items = ref()
 
 onMounted(() => {
   items.value = data.items
+  console.log("items loaded: ", items.value)
 })
 
 const perks = ([
@@ -100,6 +98,46 @@ const perks = ([
                     relatives in Jerusalem. Because we understand and care.',
   },
 ])
+
+const selectedSort = ref({})
+const selectedCategories = ref([])
+const selectedMilkOptions = ref("")
+
+function handleSortUpdate(option) {
+  selectedSort.value = option;
+}
+
+function handleMilkOptionsUpdate(options) {
+  selectedMilkOptions.value = options;
+  console.log(selectedMilkOptions.value)
+}
+
+function handleCategoriesUpdate(categories) {
+  selectedCategories.value = categories;
+  console.log(selectedCategories.value[0])
+}
+
+const filteredAndSortedItems = computed(() => {
+  if (!items.value ) return [];
+
+  return items.value.filter(item => {
+    //Check if the item belongs to one of the selected categories
+    let isInSelectedCategory = true;
+    if (selectedCategories.value.length > 0) {
+      isInSelectedCategory = selectedCategories.value.some(category =>
+        item.description.categories.includes(category.name)
+      );
+    }
+
+    let matchesMilkCriteria = true;
+    if (selectedMilkOptions.value === "Milk") {
+      matchesMilkCriteria = item.milk === true
+    } else if (selectedMilkOptions === "Pareve") {
+      matchesMilkCriteria === item.milk === false
+    } 
+    return isInSelectedCategory && matchesMilkCriteria
+  })
+})
 
 const open = ref(false)
 const selectedItem = ref(null)

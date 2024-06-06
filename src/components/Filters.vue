@@ -29,8 +29,8 @@
         </transition>
       </Menu>
       <button type="button"
-      class="flex text-sm font-medium text-gray-700 hover:text-gray-900 bg-gray-200 hover:bg-amber-100 active:bg-amber-200 sm:hidden"
-      @click="toggleFiltersMobile">
+        class="flex text-sm font-medium text-gray-700 hover:text-gray-900 bg-gray-200 hover:bg-amber-100 active:bg-amber-200 sm:hidden"
+        @click="toggleFiltersMobile">
         Filters
       </button>
     </div>
@@ -65,7 +65,7 @@
                   <h3 class="-mx-2 -my-3 flow-root">
                     <DisclosureButton
                       class="flex w-full items-center justify-between bg-white hover:bg-amber-100 active:bg-amber-200 px-2 py-3 text-sm text-gray-900">
-                      <span class="font-medium text-gray-900">Category</span>
+                      <span class="font-medium text-gray-900">Categories</span>
                       <span class="ml-6 flex items-center">
                         <ChevronDownIcon :class="[open ? '-rotate-180' : 'rotate-0', 'h-5 w-5 transform']"
                           aria-hidden="true" />
@@ -75,8 +75,9 @@
                   <DisclosurePanel class="pt-6">
                     <div class="space-y-6">
                       <div v-for="category in categories" :key="category.id" class="flex items-center">
-                        <input :id="`category-${category.id}`" :name="`category-${category.id}`" :value="category.checked"
-                          type="checkbox" :checked="category.checked" v-model="category.checked" @click.stop
+                        <input :id="`category-${category.id}`" :name="`category-${category.id}`"
+                          :value="category.checked" type="checkbox" :checked="category.checked"
+                          v-model="category.checked" @click.stop
                           class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
                         <label :for="`category-${category.id}`" class="ml-3 text-sm text-gray-500">
                           {{ category.name }}
@@ -149,9 +150,9 @@
                 class="absolute left-0 z-10 mt-2 w-40 origin-top-left rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
                 <div class="py-1">
                   <MenuItem v-for="option in sortOptions" :key="option.name" v-slot="{ active }">
-                  <a :href="option.href"
-                    :class="[option.current ? 'font-medium text-gray-900' : 'text-gray-900', active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm']">{{
-                      option.name }}</a>
+                  <a :href="option.href" @click="handleSortChange(option)"
+                    :class="[option.current ? 'font-medium text-gray-900' : 'text-gray-900', active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm']">
+                    {{ option.name }}</a>
                   </MenuItem>
                 </div>
               </MenuItems>
@@ -164,10 +165,10 @@
                 <Popover class="relative inline-block px-4 text-left">
                   <PopoverButton
                     class="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900 bg-gray-200 hover:bg-amber-100 active:bg-amber-200">
-                    <span>Category</span>
+                    <span>Categories</span>
                     <span
                       class="ml-1.5 rounded-lg bg-gray-200 px-1.5 py-0.5 text-xs font-semibold tabular-nums text-gray-700">{{
-                        checkedCategories }}</span>
+                        amountCheckedCategories }}</span>
                     <ChevronDownIcon class="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                       aria-hidden="true" />
                   </PopoverButton>
@@ -191,15 +192,11 @@
                     </PopoverPanel>
                   </transition>
                 </Popover>
-                <!-- Other filters lg screen -->
-                <Popover v-for="(section, sectionIdx) in filters" :key="section.name"
-                  class="relative inline-block px-4 text-left">
+                <!-- Milk filter lg screen -->
+                <Popover class="relative inline-block px-4 text-left">
                   <PopoverButton
                     class="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900 bg-gray-200 hover:bg-amber-100 active:bg-amber-200">
-                    <span>{{ section.name }}</span>
-                    <span v-if="sectionIdx === 0"
-                      class="ml-1.5 rounded-lg bg-gray-200 px-1.5 py-0.5 text-xs font-semibold tabular-nums text-gray-700">{{
-                        checkedCategories }}</span>
+                    <span>Milk/Parve</span>
                     <ChevronDownIcon class="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                       aria-hidden="true" />
                   </PopoverButton>
@@ -211,14 +208,17 @@
                     <PopoverPanel
                       class="absolute right-0 z-10 mt-2 origin-top-right rounded-md bg-white p-4 shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <form class="space-y-4">
-                        <div v-for="(option, optionIdx) in section.options" :key="option.value"
-                          class="flex items-center">
-                          <input :id="`filter-${section.id}-${optionIdx}`" :name="`${section.id}[]`"
-                            :value="option.value" type="checkbox" :checked="option.checked" v-model="option.checked"
+                        <div class="flex items-center">
+                          <input :id="`${milkOptions[1].name}`" :name="`${milkOptions[1].name}`" :value="`${milkOptions[1].name}`" type="checkbox" :checked="milkOptions[0].checked"
+                            v-model="milkOptions[0].checked"
                             class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
-                          <label :for="`filter-${section.id}-${optionIdx}`"
-                            class="ml-3 whitespace-nowrap pr-6 text-sm font-medium text-gray-900">{{ option.label
-                            }}</label>
+                          <label :for="`${milkOptions[1].name}`"
+                            class="ml-3 whitespace-nowrap pr-6 text-sm font-medium text-gray-900">Milk</label>
+                          <input :id="`${milkOptions[1].name}`" :name="`${milkOptions[1].name}`" :value="`${milkOptions[1].name}`" type="checkbox" :checked="milkOptions[1].checked"
+                            v-model="milkOptions[1].checked"
+                            class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+                          <label :for="`${milkOptions[1].name}`"
+                            class="ml-3 whitespace-nowrap pr-6 text-sm font-medium text-gray-900">{{ milkOptions[1].name }}</label>
                         </div>
                       </form>
                     </PopoverPanel>
@@ -291,12 +291,37 @@ const sortOptions = [
 ]
 
 const categories = ref(data.categories)
-const milk = ref(0)
+const milkOptions = ref(0)
 
-const checkedCategories = computed(() => {
-  return categories.value.filter((category) => category.checked).length
+milkOptions.value = [
+  {
+    id: 1,
+    name: "Milk",
+    checked: false,
+  },
+  {
+    id: 2,
+    name: "Parve",
+    checked: false,
+  },
+]
+
+const checkedMilkOptions = computed(() => {
+  if (milkOptions.value[0].checked && !milkOptions.value[1].checked) {
+    return "Milk"
+  } else if (milkOptions.value[1].checked && !milkOptions.value[0].checked) {
+    return "Parve"
+  } else {
+    return "Both"
+  }
 })
 
+const amountCheckedCategories = computed(() => {
+  return categories.value.filter((category) => category.checked).length
+})
+const checkedCategories = computed(() => {
+  return categories.value.filter((category) => category.checked)
+})
 const filters = ref([
   {
     id: 'sizes',
@@ -313,7 +338,6 @@ const filtersVisible = ref(false)
 
 function toggleFilters() {
   filtersVisible.value = !filtersVisible.value
-  console.log('toggled now: ', filtersVisible.value)
 }
 
 const filtersVisibleMobile = ref(false);
@@ -322,8 +346,24 @@ function toggleFiltersMobile() {
   filtersVisibleMobile.value = !filtersVisibleMobile.value
 }
 
-console.log(filtersVisible.value)
-
 const activeFilters = [{ value: 'objects', label: 'Objects' }]
+
+const emits = defineEmits(['update:categories', 'update:milk', 'update:sort'])
+
+watch(checkedMilkOptions, (newMilkOptions) => {
+  console.log('Milk options changed to: ', newMilkOptions)
+  emits('update:milk', newMilkOptions);
+})
+
+watch(checkedCategories, (newCategories) => {
+  console.log('Categories changed. Now checked: ', newCategories)
+  emits('update:categories', newCategories);
+}, { deep: true });
+
+
+function handleSortChange(event) {
+  console.log('sort changed to: ', event)
+  emits('update:sort', event)
+}
 
 </script>

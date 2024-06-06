@@ -8,7 +8,7 @@
         "$": 7,
         "€": 6.50,
         "£": 6,
-        "₪": 25
+        "₪": 25 
       },
       "href": "#",
       "imageSrc": "/images/perfect_chocolate_cake_crop.jpg",
@@ -16,7 +16,7 @@
       "description": {
         "text": "Placeholder for descriptive text for the item",
         "allergens": "Contains: eggs, wheat",
-        "category": [
+        "categories": [
           "Cake",
           "Chocolate"
         ]
@@ -39,7 +39,7 @@
       "description": {
         "text": "Placeholder for descriptive text for the item",
         "allergens": "Contains: eggs, wheat",
-        "category": [
+        "categories": [
           "Cake"
         ]
       },
@@ -61,7 +61,7 @@
       "description": {
         "text": "Placeholder for descriptive text for the item",
         "allergens": "Contains: eggs, wheat",
-        "category": [
+        "categories": [
           "Cake"
         ]
       },
