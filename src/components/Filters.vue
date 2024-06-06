@@ -35,6 +35,31 @@
 
               <!-- Filters -->
               <form class="mt-4">
+                <!-- Category filter -->
+                <Disclosure as="div" class="border-t border-gray-200 px-4 py-6" v-slot="{ open }">
+                  <h3 class="-mx-2 -my-3 flow-root">
+                    <DisclosureButton
+                      class="flex w-full items-center justify-between bg-white hover:bg-amber-100 active:bg-amber-200 px-2 py-3 text-sm text-gray-900">
+                      <span class="font-medium text-gray-900">Category</span>
+                      <span class="ml-6 flex items-center">
+                        <ChevronDownIcon :class="[open ? '-rotate-180' : 'rotate-0', 'h-5 w-5 transform']"
+                          aria-hidden="true" />
+                      </span>
+                    </DisclosureButton>
+                  </h3>
+                  <DisclosurePanel class="pt-6">
+                    <div class="space-y-6">
+                      <div v-for="category in categories" :key="category.id" class="flex items-center">
+                        <input :id="`category-${category.id}`" :name="category"
+                          :value="category.checked" type="checkbox" :checked="category.checked" v-model="category.checked"
+                          class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+                        <label :for="`filter-mobile-${section.id}-${optionIdx}`" class="ml-3 text-sm text-gray-500">{{
+                          option.label }}</label>
+                      </div>
+                    </div>
+                  </DisclosurePanel>
+                </Disclosure>
+                <!-- Other filters -->
                 <Disclosure as="div" v-for="section in filters" :key="section.name"
                   class="border-t border-gray-200 px-4 py-6" v-slot="{ open }">
                   <h3 class="-mx-2 -my-3 flow-root">
@@ -107,6 +132,36 @@
           <div class="hidden sm:block">
             <div class="flow-root">
               <PopoverGroup class="-mx-4 flex items-center divide-x divide-gray-200">
+                <!-- Category filter lg screen -->
+                <Popover cass="relative inline-block px-4 text-left">
+                  <PopoverButton
+                    class="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900 bg-gray-200 hover:bg-amber-100 active:bg-amber-200">
+                    <span>Category</span>
+                    <span class="ml-1.5 rounded-lg bg-gray-200 px-1.5 py-0.5 text-xs font-semibold tabular-nums text-gray-700">{{ checkedCategories }}</span>
+                    <ChevronDownIcon class="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
+                      aria-hidden="true" />
+                  </PopoverButton>
+
+                  <transition enter-active-class="transition ease-out duration-100"
+                    enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100"
+                    leave-active-class="transition ease-in duration-75"
+                    leave-from-class="transform opacity-100 scale-100" leave-to-class="transform opacity-0 scale-95">
+                    <PopoverPanel
+                      class="absolute right-0 z-10 mt-2 origin-top-right rounded-md bg-white p-4 shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
+                      <form class="space-y-4">
+                        <div v-for="category in categories" :key="category.name" class="flex items-center">
+                          <input :id="`category-${category.id}`" :name="category"
+                            :value="category.name" type="checkbox" :checked="category.checked" v-model="category.checked"
+                            class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+                          <label :for="`category-${category.id}`"
+                            class="ml-3 whitespace-nowrap pr-6 text-sm font-medium text-gray-900">{{ category.name
+                            }}</label>
+                        </div>
+                      </form>
+                    </PopoverPanel>
+                  </transition>
+                </Popover>
+                <!-- Other filters lg screen -->
                 <Popover v-for="(section, sectionIdx) in filters" :key="section.name"
                   class="relative inline-block px-4 text-left">
                   <PopoverButton
@@ -176,7 +231,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch } from 'vue'
+import { ref, computed, watch, compile, onMounted } from 'vue'
 import {
   Dialog,
   DialogPanel,
@@ -196,26 +251,21 @@ import {
 } from '@headlessui/vue'
 import { XMarkIcon } from '@heroicons/vue/24/outline'
 import { ChevronDownIcon } from '@heroicons/vue/20/solid'
+import data from '../assets/data/database.json'
 
 const sortOptions = [
   { name: 'Most Popular', href: '#', current: true },
   { name: 'Best Rating', href: '#', current: false },
   { name: 'Newest', href: '#', current: false },
 ]
+
+const categories = ref(data.categories)
+
+const checkedCategories = computed(() => {
+  return categories.value.filter((category) => category.checked).length
+})
+
 const filters = ref([
-  {
-    id: 'category',
-    name: 'Category',
-    options: [
-      { value: 'objects', label: 'Objects', checked: false },
-      { value: 'cakes', label: 'Cakes', checked: false },
-      { value: 'cookies', label: 'Cookies', checked: false },
-      { value: 'cupcakes', label: 'Cupcakes', checked: false },
-      { value: 'chocolate-cakes', label: 'Chocolate Cakes', checked: false },
-      { value: 'coffee-cakes', label: 'Coffee Cakes', checked: true },
-      { value: 'objects', label: 'Objects', checked: true },
-    ],
-  },
   {
     id: 'color',
     name: 'Color',
@@ -235,16 +285,6 @@ const filters = ref([
     ],
   },
 ]);
-
-//Get number of checked categories
-const checkedCategories = computed(() => {
-  // Iterates over first section options and returns the number of checked options
-  return filters.value[0].options.filter((option) => option.checked).length;
-});
-
-watch(checkedCategories, (newVal) => {
-  console.log('Checked Categories Updated:', newVal);
-});
 
 const filtersVisible = ref(false)
 
