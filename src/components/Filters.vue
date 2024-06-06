@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- Toggle Button -->
+    <!-- Toggle Button for filters for lg screens -->
     <button @click="toggleFilters" :class="['hidden sm:flex items-center justify-between w-full h-min leading-none bg-gray-100 hover:bg-amber-100 active:bg-amber-200',
       filtersVisible ? 'p-1' : 'p-4']">
       <span v-if="filtersVisible" class="text-xs">Hide Filters</span>
@@ -9,8 +9,8 @@
         class="h-5 w-5 text-gray-500 transition-transform mr-auto" aria-hidden="true" />
     </button>
     <!-- Mobile filter dialog -->
-    <TransitionRoot as="template" :show="open">
-      <Dialog class="relative z-40 sm:hidden" @close="open = false">
+    <TransitionRoot as="template" :show="filtersVisible">
+      <Dialog class="relative z-40 sm:hidden">
         <TransitionChild as="template" enter="transition-opacity ease-linear duration-300" enter-from="opacity-0"
           enter-to="opacity-100" leave="transition-opacity ease-linear duration-300" leave-from="opacity-100"
           leave-to="opacity-0">
@@ -27,7 +27,7 @@
                 <h2 class="text-lg font-medium text-gray-900">Filters</h2>
                 <button type="button"
                   class="-mr-2 flex h-10 w-10 items-center justify-center rounded-md bg-white p-2 text-gray-400"
-                  @click="open = false">
+                  @click="toggleFilters">
                   <span class="sr-only">Close menu</span>
                   <XMarkIcon class="h-6 w-6" aria-hidden="true" />
                 </button>
@@ -91,7 +91,7 @@
       </Dialog>
     </TransitionRoot>
 
-    <!-- Filters -->
+    <!-- Filters for lg screens -->
     <section v-show="filtersVisible" aria-labelledby="filter-heading">
       <h2 id="filter-heading" class="sr-only">Filters</h2>
       <!--Sort button-->
@@ -133,7 +133,7 @@
             <div class="flow-root">
               <PopoverGroup class="-mx-4 flex items-center divide-x divide-gray-200">
                 <!-- Category filter lg screen -->
-                <Popover cass="relative inline-block px-4 text-left">
+                <Popover class="relative inline-block px-4 text-left">
                   <PopoverButton
                     class="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900 bg-gray-200 hover:bg-amber-100 active:bg-amber-200">
                     <span>Category</span>
@@ -286,7 +286,7 @@ const filters = ref([
   },
 ]);
 
-const filtersVisible = ref(false)
+const filtersVisible = ref(true)
 
 function toggleFilters() {
   filtersVisible.value = !filtersVisible.value
