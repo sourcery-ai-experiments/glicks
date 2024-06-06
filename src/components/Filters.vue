@@ -75,11 +75,12 @@
                   <DisclosurePanel class="pt-6">
                     <div class="space-y-6">
                       <div v-for="category in categories" :key="category.id" class="flex items-center">
-                        <input :id="`category-${category.id}`" :name="category" :value="category.checked"
-                          type="checkbox" :checked="category.checked" v-model="category.checked"
+                        <input :id="`category-${category.id}`" :name="`category-${category.id}`" :value="category.checked"
+                          type="checkbox" :checked="category.checked" v-model="category.checked" @click.stop
                           class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
-                        <label :for="`filter-mobile-${section.id}-${optionIdx}`" class="ml-3 text-sm text-gray-500">{{
-                          option.label }}</label>
+                        <label :for="`category-${category.id}`" class="ml-3 text-sm text-gray-500">
+                          {{ category.name }}
+                        </label>
                       </div>
                     </div>
                   </DisclosurePanel>
