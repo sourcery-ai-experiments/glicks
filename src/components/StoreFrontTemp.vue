@@ -28,12 +28,11 @@
               </div>
               <h3 class="mt-4 text-sm text-gray-700">
                 <a @click="openModal(item)" type="button">
-                  <span class="absolute inset-0" />
+                  <span class="absolute inset-0"></span>
                   {{ item.name }}
                 </a>
               </h3>
-              <p class="mt-1 text-sm text-gray-500">{{ item.color }}</p>
-              <p class="mt-1 text-sm font-medium text-gray-900">{{ item.price }}</p>
+              <p class="mt-1 text-sm font-medium text-gray-900">{{ itemCurrency + item.price[itemCurrency] }}</p>
             </div>
           </div>
         </div>
@@ -69,10 +68,13 @@
 <script setup>
 import Filters from './Filters.vue';
 import ItemDialog from './ItemDialog.vue';
-import { ref, onMounted, computed, watch } from 'vue'
+import { ref, onMounted, computed, watch, inject } from 'vue'
 import data from '../assets/data/database.json'
 
 const items = ref()
+const currencyState = inject('currencyState', () => ('$'));
+
+const itemCurrency = computed(() => currencyState.selectedCurrency);
 
 onMounted(() => {
   items.value = data.items

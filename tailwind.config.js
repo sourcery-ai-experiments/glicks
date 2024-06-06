@@ -16,6 +16,9 @@ export default {
         septemberScript: ['SeptemberScript', 'cursive'],
         cherrySwashScript: ['CherrySwash', 'cursive'],
         chopinScript: ['ChopinScript', 'cursive'],
+      },
+      padding: {
+        '0.5': '0.125rem',
       }
     },
   },

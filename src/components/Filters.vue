@@ -291,7 +291,7 @@ const sortOptions = [
 ]
 
 const categories = ref(data.categories)
-const milkOptions = ref(0)
+const milkOptions = ref([])
 
 milkOptions.value = [
   {
