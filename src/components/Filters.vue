@@ -1,15 +1,40 @@
 <template>
-  <div>
-    <!-- Toggle Button for filters for lg screens -->
-    <button @click="toggleFilters" :class="['hidden sm:flex items-center justify-between w-full h-min leading-none bg-gray-100 hover:bg-amber-100 active:bg-amber-200',
-      filtersVisible ? 'p-1' : 'p-4']">
-      <span v-if="filtersVisible" class="text-xs">Hide Filters</span>
-      <span v-else>Filters</span>
-      <ChevronDownIcon :class="{ 'transform rotate-180': filtersVisible }"
-        class="h-5 w-5 text-gray-500 transition-transform mr-auto" aria-hidden="true" />
-    </button>
+  <div class="p-2 sm:p-0">
     <!-- Mobile filter dialog -->
-    <TransitionRoot as="template" :show="filtersVisible">
+    <div class="p-2 sm:hidden flex justify-between">
+      <Menu as="div" class="relative inline-block text-left">
+        <div>
+          <MenuButton
+            class="group inline-flex justify-center text-sm font-medium text-gray-900 bg-gray-200 hover:bg-amber-100 active:bg-amber-200">
+            Sort
+            <ChevronDownIcon class="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
+              aria-hidden="true" />
+          </MenuButton>
+        </div>
+
+        <transition enter-active-class="transition ease-out duration-200"
+          enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100"
+          leave-active-class="transition ease-in duration-100" leave-from-class="transform opacity-100 scale-100"
+          leave-to-class="transform opacity-0 scale-95">
+          <MenuItems
+            class="absolute left-0 z-10 mt-2 w-40 origin-top-left rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
+            <div class="py-1">
+              <MenuItem v-for="option in sortOptions" :key="option.name" v-slot="{ active }">
+              <a :href="option.href"
+                :class="[option.current ? 'font-medium text-gray-900' : 'text-gray-900', active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm']">{{
+                  option.name }}</a>
+              </MenuItem>
+            </div>
+          </MenuItems>
+        </transition>
+      </Menu>
+      <button type="button"
+      class="flex text-sm font-medium text-gray-700 hover:text-gray-900 bg-gray-200 hover:bg-amber-100 active:bg-amber-200 sm:hidden"
+      @click="toggleFiltersMobile">
+        Filters
+      </button>
+    </div>
+    <TransitionRoot as="template" :show="filtersVisibleMobile">
       <Dialog class="relative z-40 sm:hidden">
         <TransitionChild as="template" enter="transition-opacity ease-linear duration-300" enter-from="opacity-0"
           enter-to="opacity-100" leave="transition-opacity ease-linear duration-300" leave-from="opacity-100"
@@ -27,13 +52,13 @@
                 <h2 class="text-lg font-medium text-gray-900">Filters</h2>
                 <button type="button"
                   class="-mr-2 flex h-10 w-10 items-center justify-center rounded-md bg-white p-2 text-gray-400"
-                  @click="toggleFilters">
+                  @click="toggleFiltersMobile">
                   <span class="sr-only">Close menu</span>
                   <XMarkIcon class="h-6 w-6" aria-hidden="true" />
                 </button>
               </div>
 
-              <!-- Filters -->
+              <!-- Filters for small screen -->
               <form class="mt-4">
                 <!-- Category filter -->
                 <Disclosure as="div" class="border-t border-gray-200 px-4 py-6" v-slot="{ open }">
@@ -50,8 +75,8 @@
                   <DisclosurePanel class="pt-6">
                     <div class="space-y-6">
                       <div v-for="category in categories" :key="category.id" class="flex items-center">
-                        <input :id="`category-${category.id}`" :name="category"
-                          :value="category.checked" type="checkbox" :checked="category.checked" v-model="category.checked"
+                        <input :id="`category-${category.id}`" :name="category" :value="category.checked"
+                          type="checkbox" :checked="category.checked" v-model="category.checked"
                           class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
                         <label :for="`filter-mobile-${section.id}-${optionIdx}`" class="ml-3 text-sm text-gray-500">{{
                           option.label }}</label>
@@ -92,7 +117,15 @@
     </TransitionRoot>
 
     <!-- Filters for lg screens -->
-    <section v-show="filtersVisible" aria-labelledby="filter-heading">
+    <!-- Toggle Button for filters for lg screens -->
+    <button @click="toggleFilters" :class="['hidden sm:flex items-center justify-between w-full h-min leading-none bg-gray-100 hover:bg-amber-100 active:bg-amber-200',
+      filtersVisible ? 'p-1' : 'p-2.5 xl:p-3']">
+      <span v-if="filtersVisible" class="text-xs">Hide Filters</span>
+      <span v-else>Filters</span>
+      <ChevronDownIcon :class="{ 'transform rotate-180': filtersVisible }"
+        class="h-5 w-5 text-gray-500 transition-transform mr-auto" aria-hidden="true" />
+    </button>
+    <section v-show="filtersVisible" aria-labelledby="filter-heading" class="hidden sm:block">
       <h2 id="filter-heading" class="sr-only">Filters</h2>
       <!--Sort button-->
       <div class="border-b border-gray-200 bg-white p-3">
@@ -117,18 +150,12 @@
                   <MenuItem v-for="option in sortOptions" :key="option.name" v-slot="{ active }">
                   <a :href="option.href"
                     :class="[option.current ? 'font-medium text-gray-900' : 'text-gray-900', active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm']">{{
-                    option.name }}</a>
+                      option.name }}</a>
                   </MenuItem>
                 </div>
               </MenuItems>
             </transition>
           </Menu>
-
-          <!-- Filters button -->
-          <button type="button"
-            class="inline-block text-sm font-medium text-gray-700 hover:text-gray-900 bg-gray-200 hover:bg-amber-100 active:bg-amber-200 sm:hidden"
-            @click="open = true">Filters</button>
-
           <div class="hidden sm:block">
             <div class="flow-root">
               <PopoverGroup class="-mx-4 flex items-center divide-x divide-gray-200">
@@ -137,7 +164,9 @@
                   <PopoverButton
                     class="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900 bg-gray-200 hover:bg-amber-100 active:bg-amber-200">
                     <span>Category</span>
-                    <span class="ml-1.5 rounded-lg bg-gray-200 px-1.5 py-0.5 text-xs font-semibold tabular-nums text-gray-700">{{ checkedCategories }}</span>
+                    <span
+                      class="ml-1.5 rounded-lg bg-gray-200 px-1.5 py-0.5 text-xs font-semibold tabular-nums text-gray-700">{{
+                        checkedCategories }}</span>
                     <ChevronDownIcon class="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                       aria-hidden="true" />
                   </PopoverButton>
@@ -150,8 +179,8 @@
                       class="absolute right-0 z-10 mt-2 origin-top-right rounded-md bg-white p-4 shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <form class="space-y-4">
                         <div v-for="category in categories" :key="category.name" class="flex items-center">
-                          <input :id="`category-${category.id}`" :name="category"
-                            :value="category.name" type="checkbox" :checked="category.checked" v-model="category.checked"
+                          <input :id="`category-${category.id}`" :name="category" :value="category.name" type="checkbox"
+                            :checked="category.checked" v-model="category.checked"
                             class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
                           <label :for="`category-${category.id}`"
                             class="ml-3 whitespace-nowrap pr-6 text-sm font-medium text-gray-900">{{ category.name
@@ -168,7 +197,8 @@
                     class="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900 bg-gray-200 hover:bg-amber-100 active:bg-amber-200">
                     <span>{{ section.name }}</span>
                     <span v-if="sectionIdx === 0"
-                      class="ml-1.5 rounded-lg bg-gray-200 px-1.5 py-0.5 text-xs font-semibold tabular-nums text-gray-700">{{ checkedCategories }}</span>
+                      class="ml-1.5 rounded-lg bg-gray-200 px-1.5 py-0.5 text-xs font-semibold tabular-nums text-gray-700">{{
+                        checkedCategories }}</span>
                     <ChevronDownIcon class="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                       aria-hidden="true" />
                   </PopoverButton>
@@ -260,21 +290,13 @@ const sortOptions = [
 ]
 
 const categories = ref(data.categories)
+const milk = ref(0)
 
 const checkedCategories = computed(() => {
   return categories.value.filter((category) => category.checked).length
 })
 
 const filters = ref([
-  {
-    id: 'color',
-    name: 'Color',
-    options: [
-      { value: 'white', label: 'White', checked: false },
-      { value: 'beige', label: 'Beige', checked: false },
-      { value: 'blue', label: 'Blue', checked: false },
-    ],
-  },
   {
     id: 'sizes',
     name: 'Sizes',
@@ -286,13 +308,21 @@ const filters = ref([
   },
 ]);
 
-const filtersVisible = ref(true)
+const filtersVisible = ref(false)
 
 function toggleFilters() {
   filtersVisible.value = !filtersVisible.value
+  console.log('toggled now: ', filtersVisible.value)
 }
+
+const filtersVisibleMobile = ref(false);
+
+function toggleFiltersMobile() {
+  filtersVisibleMobile.value = !filtersVisibleMobile.value
+}
+
+console.log(filtersVisible.value)
 
 const activeFilters = [{ value: 'objects', label: 'Objects' }]
 
-const open = ref(false)
 </script>
