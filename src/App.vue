@@ -1,6 +1,6 @@
 <script setup>
 import HeaderTemp from './components/Header.vue'
-import StoreFrontTemp from './components/StoreFrontTemp.vue'
+import Content from './components/Content.vue'
 import Footer from './components/Footer.vue'
 import { reactive, provide } from 'vue';
 
@@ -12,7 +12,7 @@ provide('currencyState', currencyState)
 
 <template>
   <HeaderTemp />
-  <StoreFrontTemp />
+  <Content />
   <Footer />
 </template>
 

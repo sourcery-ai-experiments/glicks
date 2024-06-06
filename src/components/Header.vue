@@ -91,10 +91,10 @@ import { Dialog, DialogPanel } from '@headlessui/vue';
 import { Bars3Icon, XMarkIcon, ChevronDownIcon } from '@heroicons/vue/24/outline'
 
 const navigation = [
-  { name: 'Cakes', href: '#cakes' },
-  { name: 'Cookies', href: '#cookies' },
-  { name: 'Kedeishim', href: '#kedeishim' },
-  { name: 'Specials', href: '#special' },
+  { name: 'Cakes', href: '#Cake' },
+  { name: 'Cookies', href: '#Cookies' },
+  { name: 'Kedeishim', href: '#Kedeishim' },
+  { name: 'Specials', href: '#Special' },
 ]
 
 const currencies = ['₪', '$', '€', '£']
