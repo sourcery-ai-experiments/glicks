@@ -1,5 +1,20 @@
 <template>
   <header class="bg-white">
+    <!-- Banner on top of nav that has location and contact info -->
+    <div class="bg-gradient-to-r from-rose-400 to-rose-600 h-min">
+      <span class="flex items-center justify-between px-4 py-1 text-sm font-medium text-white">
+        <p class="flex items-center justify-start">
+          <a href="tel:+025373737" class="text-white flex items-center"><PhoneIcon class="fill-current w-3" /><span class="text-white hover:text-white">&nbsp; IL: 025-373737 &nbsp;</span></a>
+          <a href="tel:+44 20 7123 4567" class="text-white"><span class="text-white hover:text-white">&nbsp; UK: +44 20 7123 4567 &nbsp;</span></a>
+          <a href="tel:(555) 555-1234" class="text-white"><span class="text-white hover:text-white">&nbsp; US: (555) 555-1234</span></a>
+        </p>
+        <p>
+          <span>
+            <span class="text-white flex items-center"><TruckIcon class="w-5 stroke-2" /><span class="text-white hover:text-white">&nbsp; We deliver to all areas in <span class=" text-amber-200">Yerushalaim.</span></span></span>
+          </span>
+        </p>
+      </span>
+    </div>
     <nav class="flex items-center gap-10 justify-between py-2 lg:py-3 pl-1 lg:pl-2 pr-4 lg:pr-6" aria-label="Main navigation">
       <Logo class="min-w-min flex p-2 lg:p-2 xl:p-4">
         <a href="#" class="h-min flex items-center">
@@ -88,7 +103,7 @@
 import { inject, ref, watch } from 'vue'
 import Logo from './Logo.vue'
 import { Dialog, DialogPanel } from '@headlessui/vue';
-import { Bars3Icon, XMarkIcon, ChevronDownIcon } from '@heroicons/vue/24/outline'
+import { Bars3Icon, XMarkIcon, ChevronDownIcon, PhoneIcon, TruckIcon } from '@heroicons/vue/24/outline'
 
 const navigation = [
   { name: 'Cakes', href: '#Cake' },
