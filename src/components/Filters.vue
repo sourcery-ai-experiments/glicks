@@ -86,13 +86,12 @@
                     </div>
                   </DisclosurePanel>
                 </Disclosure>
-                <!-- Other filters -->
-                <Disclosure as="div" v-for="section in filters" :key="section.name"
-                  class="border-t border-gray-200 px-4 py-6" v-slot="{ open }">
+                <!-- Milchig filter -->
+                <Disclosure as="div" class="px-4 py-6" v-slot="{ open }">
                   <h3 class="-mx-2 -my-3 flow-root">
                     <DisclosureButton
                       class="flex w-full items-center justify-between bg-white hover:bg-amber-100 active:bg-amber-200 px-2 py-3 text-sm text-gray-900">
-                      <span class="font-medium text-gray-900">{{ section.name }}</span>
+                      <span class="font-medium text-gray-900">Milk/Parve</span>
                       <span class="ml-6 flex items-center">
                         <ChevronDownIcon :class="[open ? '-rotate-180' : 'rotate-0', 'h-5 w-5 transform']"
                           aria-hidden="true" />
@@ -101,12 +100,20 @@
                   </h3>
                   <DisclosurePanel class="pt-6">
                     <div class="space-y-6">
-                      <div v-for="(option, optionIdx) in section.options" :key="option.value" class="flex items-center">
-                        <input :id="`filter-mobile-${section.id}-${optionIdx}`" :name="`${section.id}[]`"
-                          :value="option.value" type="checkbox" :checked="option.checked"
+                      <div class="flex items-center">
+                        <input :id="`${milkOptions[1].name}`" :name="`${milkOptions[1].name}`"
+                          :value="`${milkOptions[1].name}`" type="checkbox" :checked="milkOptions[0].checked"
+                          v-model="milkOptions[0].checked"
                           class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
-                        <label :for="`filter-mobile-${section.id}-${optionIdx}`" class="ml-3 text-sm text-gray-500">{{
-                          option.label }}</label>
+                        <label :for="`${milkOptions[1].name}`"
+                          class="ml-3 whitespace-nowrap pr-6 text-sm font-medium text-gray-900">Milk</label>
+                        <input :id="`${milkOptions[1].name}`" :name="`${milkOptions[1].name}`"
+                          :value="`${milkOptions[1].name}`" type="checkbox" :checked="milkOptions[1].checked"
+                          v-model="milkOptions[1].checked"
+                          class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+                        <label :for="`${milkOptions[1].name}`"
+                          class="ml-3 whitespace-nowrap pr-6 text-sm font-medium text-gray-900">{{ milkOptions[1].name
+                          }}</label>
                       </div>
                     </div>
                   </DisclosurePanel>
@@ -262,7 +269,7 @@
             </div>
           </div>
           <div>
-            <button @click="removeFilter('clearAll')" v-if="activeFilters" 
+            <button @click="removeFilter('clearAll')" v-if="activeFilters"
               class="bg-white hover:bg-amber-100 active:bg-amber-200">
               Clear all
             </button>

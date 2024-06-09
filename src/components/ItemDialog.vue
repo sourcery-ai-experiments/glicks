@@ -12,9 +12,9 @@
             enter-to="opacity-100 scale-100" leave="duration-200 ease-in" leave-from="opacity-100 scale-100"
             leave-to="opacity-0 scale-95">
             <DialogPanel
-              class="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-2 text-left align-middle shadow-xl transition-all">
+              class="w-full h-min max-w-md transform overflow-hidden rounded-2xl bg-white p-2 text-left align-middle shadow-xl transition-all">
               <DialogTitle as="h3" class="text-lg font-medium leading-6 text-gray-900">
-                <div class="h-56 w-full overflow-hidden rounded-md group-hover:opacity-75 lg:h-72 xl:h-80 ">
+                <div class="h-56 w-full overflow-hidden rounded-md group-hover:opacity-75 lg:h-60 xl:h-72 ">
                   <img :src="'/images/' + item.imageSrc" :alt="item.imageAlt"
                     class="h-full w-full object-cover object-center" />
                 </div>
@@ -38,6 +38,11 @@
               <div class="flex item justify-center">
                 <p class="mt-1 text-lg bg-amber-100 px-2 rounded-lg font-medium text-gray-900">
                   {{ itemCurrency + item.price[itemCurrency] }}
+                </p>
+              </div>
+              <div class="flex items-center justify-start mt-1">
+                <p class="text-xs bg-gray-200 text-gray-700 px-0.5 rounded mr-1" v-for="category in item.description.categories" >
+                  {{ category }} 
                 </p>
               </div>
               <!-- Categories rendered as mini cards -->
