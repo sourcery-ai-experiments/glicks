@@ -3,7 +3,6 @@
     {
       "id": 1,
       "name": "Classic Chocolate Cake",
-      "color": "Classic and good!",
       "price": {
         "$": 7,
         "€": 6.50,
@@ -14,8 +13,9 @@
       "imageSrc": "/images/perfect_chocolate_cake_crop.jpg",
       "imageAlt": "Perfect crop of classic chocolate cake.",
       "description": {
+        "short_text": "Classic and good!",
         "text": "Placeholder for descriptive text for the item",
-        "allergens": "Contains: eggs, wheat",
+        "allergens": ["eggs", "gluten"],
         "categories": [
           "Cake",
           "Chocolate"
@@ -26,7 +26,6 @@
     {
       "id": 2,
       "name": "Marble Cake",
-      "color": "Better than it looks!",
       "price": {
         "$": 7,
         "€": 6.50,
@@ -37,8 +36,9 @@
       "imageSrc": "/images/perfect_chocolate_cake_crop.jpg",
       "imageAlt": "Perfect crop of classic chocolate cake.",
       "description": {
+        "short_text": "Better than it looks!",
         "text": "Placeholder for descriptive text for the item",
-        "allergens": "Contains: eggs, wheat",
+        "allergens": ["eggs", "gluten"],
         "categories": [
           "Cake"
         ]
@@ -48,7 +48,6 @@
     {
       "id": 3,
       "name": "Chocolate Babke",
-      "color": "You'll love it!",
       "price": {
         "$": 7,
         "€": 6.50,
@@ -59,8 +58,9 @@
       "imageSrc": "/images/perfect_chocolate_cake_crop.jpg",
       "imageAlt": "Perfect crop of classic chocolate cake.",
       "description": {
+        "short_text": "You'll love it!",
         "text": "Placeholder for descriptive text for the item",
-        "allergens": "Contains: eggs, wheat",
+        "allergens": ["eggs", "gluten"],
         "categories": [
           "Cake"
         ]
@@ -80,40 +80,14 @@
       "imageSrc": "/images/classic-chocolate-chip-cookies.jpg",
       "imageAlt": "Perfect crop of classic chocolate cake.",
       "description": {
+        "short_text": "It's good",
         "text": "Placeholder for descriptive text for the item",
-        "allergens": "Contains: eggs, wheat",
+        "allergens": ["eggs", "gluten"],
         "categories": [
           "Cookies"
         ]
       },
       "milk": false
     }
-  ],
-"categories": [
-  {
-    "id": 1,
-    "name": "Cake",
-    "checked": false
-  },
-  {
-    "id": 2,
-    "name": "Chocolate",
-    "checked": false
-  },
-  {
-    "id": 3,
-    "name": "Cookies",
-    "checked": false
-  },
-  {
-    "id": 4,
-    "name": "Cupcakes",
-    "checked": false
-  },
-  {
-    "id": 5,
-    "name": "Desserts",
-    "checked": false
-  }
-]
+  ]
 }
