@@ -2,20 +2,20 @@
   <header class="bg-white">
     <!-- Banner on top of nav that has location and contact info -->
     <div class="bg-gradient-to-r from-rose-400 to-rose-600 h-min">
-      <span class="flex items-center justify-between px-4 py-1 text-sm font-medium text-white">
-        <p class="flex items-center justify-start">
-          <a href="tel:+025373737" class="text-white flex items-center"><PhoneIcon class="fill-current w-3" /><span class="text-white hover:text-white">&nbsp; IL: 025-373737 &nbsp;</span></a>
-          <a href="tel:+44 20 7123 4567" class="text-white"><span class="text-white hover:text-white">&nbsp; UK: +44 20 7123 4567 &nbsp;</span></a>
-          <a href="tel:(555) 555-1234" class="text-white"><span class="text-white hover:text-white">&nbsp; US: (555) 555-1234</span></a>
+      <span class=" flex md:flex items-center justify-between px-4 py-1 text-sm font-medium text-white">
+        <p class="hidden sm:flex items-center justify-start">
+          <a href="tel:+025373737" class="text-white flex items-center"><PhoneIcon class="fill-current w-3 hidden md:block" /><span class="text-white hover:text-white">&nbsp; IL: 025-373737 &nbsp;</span></a>
+          <a href="tel:+44 20 7123 4567" class="hidden md:block text-white"><span class="text-white hover:text-white">&nbsp; UK: +44 20 7123 4567 &nbsp;</span></a>
+          <a href="tel:(555) 555-1234" class="text-white hidden lg:block"><span class="text-white hover:text-white">&nbsp; US: (555) 555-1234</span></a>
         </p>
         <p>
           <span>
-            <span class="text-white flex items-center"><TruckIcon class="w-5 stroke-2" /><span class="text-white hover:text-white">&nbsp; We deliver to all areas in <span class=" text-amber-200">Yerushalaim.</span></span></span>
+            <span class="text-white flex items-center"><TruckIcon class="w-5 stroke-2" /><span class="text-white hover:text-white text-xs sm:text-sm">&nbsp; We deliver to all areas in <span class=" text-amber-200">Yerushalaim.</span></span></span>
           </span>
         </p>
       </span>
     </div>
-    <nav class="flex items-center gap-10 justify-between py-2 lg:py-3 pl-1 lg:pl-2 pr-4 lg:pr-6" aria-label="Main navigation">
+    <nav class="flex items-center md:gap-10 justify-between py-2 lg:py-3 pl-1 lg:pl-2 pr-4 lg:pr-6" aria-label="Main navigation">
       <Logo class="min-w-min flex p-2 lg:p-2 xl:p-4">
         <a href="#" class="h-min flex items-center">
           <span class="sr-only">Glicks Bakery</span>
@@ -34,7 +34,7 @@
             item.name }}</a>
       </div>
       <!--Currency selector -->
-      <div>
+      <div class="hidden md:block">
         <form>
           <div>
             <label for="currency-selector" class="sr-only">Currency</label>
@@ -68,7 +68,7 @@
         class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
         <div class="flex items-center justify-between">
           <a href="#" class="-m-1.5 p-1.5">
-            <span class="sr-only">Your Company</span>
+            <span class="sr-only">Glicks Bakery</span>
             <img class="h-14 w-auto rounded-full" src="/favicon/favicon-glicks.png" alt="" />
           </a>
           <button type="button"
@@ -81,13 +81,13 @@
         <div class="mt-6 flow-root">
           <div class="-my-6 divide-y divide-gray-500/10">
             <div class="space-y-2 py-6">
-              <a v-for="item in navigation" :key="item.name" :href="item.href"
+              <a v-for="item in navigation" :key="item.name" :href="item.href" @click="mobileMenuOpen = false"
                 class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 bg-none hover:bg-amber-100 hover:text-black">
                 {{ item.name }}
               </a>
             </div>
             <div class="space-y-2 py-6">
-              <a href="#contact-us"
+              <a href="#contact-us" @click="mobileMenuOpen = false"
                 class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-green-200 hover:text-black">
                 Contact Us
               </a>
@@ -106,7 +106,7 @@ import { Dialog, DialogPanel } from '@headlessui/vue';
 import { Bars3Icon, XMarkIcon, ChevronDownIcon, PhoneIcon, TruckIcon } from '@heroicons/vue/24/outline'
 
 const navigation = [
-  { name: 'Cakes', href: '#Cake' },
+  { name: 'Cakes', href: '#Cakes' },
   { name: 'Cookies', href: '#Cookies' },
   { name: 'Kedeishim', href: '#Kedeishim' },
   { name: 'Specials', href: '#Special' },

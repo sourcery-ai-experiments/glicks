@@ -97,21 +97,20 @@ const itemCurrency = computed(() => currencyState.selectedCurrency);
 
 const perks = ([
   {
-    name: 'Same day delivery',
+    name: 'We deliver to YOUR family',
     imageUrl: 'https://tailwindui.com/img/ecommerce/icons/icon-calendar-light.svg',
     description:
-      'We offer a delivery service that has never been done before. Checkout today and receive your items within hours.',
+      'We offer delivery to anywhere in Yerushalaim and you can call us from anywhere in the world.',
   },
   {
     name: 'All year discount',
     imageUrl: 'https://tailwindui.com/img/ecommerce/icons/icon-gift-card-light.svg',
-    description: 'Looking for a deal? You can use the code "ALLYEAR" at checkout and get money off all year round.',
+    description: 'You may be far from them geographically but you are so close in heart.',
   },
   {
-    name: 'Connecting families around the world',
+    name: 'Call us now from around the world',
     imageUrl: 'https://tailwindui.com/img/ecommerce/icons/icon-planet-light.svg',
-    description: 'We offer special attention and quality service to people from abroad ordering for their\
-                    relatives in Jerusalem. Because we understand and care.',
+    description: 'We have special for our customers abroad american and British phone numbers.',
   },
 ])
 
