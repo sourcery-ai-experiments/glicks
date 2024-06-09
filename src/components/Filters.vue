@@ -167,8 +167,9 @@
                     class="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900 bg-gray-200 hover:bg-amber-100 active:bg-amber-200">
                     <span>Categories</span>
                     <span
-                      class="ml-1.5 rounded-lg bg-gray-200 px-1.5 py-0.5 text-xs font-semibold tabular-nums text-gray-700">{{
-                        amountCheckedCategories }}</span>
+                      class="ml-1.5 rounded-lg bg-gray-200 px-1.5 py-0.5 text-xs font-semibold tabular-nums text-gray-700">
+                      {{ amountCheckedCategories }}
+                    </span>
                     <ChevronDownIcon class="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                       aria-hidden="true" />
                   </PopoverButton>
@@ -293,7 +294,7 @@ import {
 } from '@headlessui/vue'
 import { XMarkIcon } from '@heroicons/vue/24/outline'
 import { ChevronDownIcon } from '@heroicons/vue/20/solid'
-import data from '../assets/data/database.json'
+import categoriesData from '../assets/data/categories.json'
 
 const sortOptions = [
   { name: 'Most Popular', href: '#', current: true },
@@ -301,7 +302,7 @@ const sortOptions = [
   { name: 'Newest', href: '#', current: false },
 ]
 
-const categories = ref(data.categories)
+const categories = ref(categoriesData)
 const milkOptions = ref([])
 
 milkOptions.value = [
