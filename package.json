@@ -5,12 +5,16 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "updateSchema",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "validate:schema": "node ./src/scripts/schemaValidation.js",
+    "updateSchema": "node ./src/scripts/updateSchema.cjs"
   },
   "dependencies": {
     "@headlessui/vue": "^1.7.22",
     "@heroicons/vue": "^2.1.3",
+    "ajv-formats": "^3.0.1",
     "vue": "^3.4.21"
   },
   "devDependencies": {

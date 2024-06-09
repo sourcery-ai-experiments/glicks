@@ -1,0 +1,84 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "integer"
+      },
+      "name": {
+        "type": "string"
+      },
+      "price": {
+        "type": "object",
+        "properties": {
+          "$": {
+            "type": "integer"
+          },
+          "€": {
+            "type": "number"
+          },
+          "£": {
+            "type": "integer"
+          },
+          "₪": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "$",
+          "€",
+          "£",
+          "₪"
+        ]
+      },
+      "imageSrc": {
+        "type": "string",
+        "format": "custom-uri"
+      },
+      "imageAlt": {
+        "type": "string"
+      },
+      "description": {
+        "type": "object",
+        "properties": {
+          "short_text": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          },
+          "allergens": {
+            "type": "array"
+          },
+          "categories": {
+            "type": "array",
+            "enum": [
+              "Cake",
+              "Chocolate",
+              "Cookies",
+              "Cupcakes",
+              "Desserts"
+            ]
+          }
+        },
+        "required": [
+          "allergens",
+          "categories"
+        ]
+      },
+      "milk": {
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "id",
+      "name",
+      "price",
+      "imageSrc",
+      "milk",
+      "description"
+    ]
+  }
+}
