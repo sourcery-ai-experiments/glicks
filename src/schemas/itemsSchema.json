@@ -55,7 +55,7 @@
           "categories": {
             "type": "array",
             "enum": [
-              "Cake",
+              "Cakes",
               "Chocolate",
               "Cookies",
               "Cupcakes",
