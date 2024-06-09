@@ -8,11 +8,11 @@ function updateSchema() {
 
     // Read categories
     const categoriesData = JSON.parse(fs.readFileSync(categoriesPath, 'utf8'));
-    const validCategories = categoriesData.categories.map(cat => cat.name);
+    const validCategories = categoriesData.map(cat => cat.name);
 
     // Read and update schema
     const schemaData = JSON.parse(fs.readFileSync(schemaPath, 'utf8'));
-    schemaData.properties.items.items.properties.description.properties.categories.enum = validCategories;
+    schemaData.items.properties.description.properties.categories.enum = validCategories;
 
     // Write the updated schema back to file
     fs.writeFileSync(schemaPath, JSON.stringify(schemaData, null, 2), 'utf8');
