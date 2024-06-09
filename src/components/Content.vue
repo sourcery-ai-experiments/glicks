@@ -43,7 +43,9 @@
                       {{ item.name }}
                     </a>
                   </h3>
-                  <p class="mt-1 text-sm font-medium text-gray-900">{{ itemCurrency + item.price[itemCurrency] }}</p>
+                  <p class="mt-1 text-sm font-medium text-gray-900">
+                    {{ itemCurrency + item.price[itemCurrency] }}
+                  </p>
                 </div>
               </div>
             </div>
@@ -71,7 +73,7 @@
           </div>
         </div>
       </section>
-      <ItemDialog :isOpen="open" :item="selectedItem" @update:isOpen="open = $event" />
+      <ItemDialog :isOpen="open" :item="selectedItem" :itemCurrency="itemCurrency" @update:isOpen="open = $event" />
     </main>
 
 
