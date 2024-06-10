@@ -4,12 +4,15 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "updateSchema": "node ./src/scripts/updateSchema.cjs",
+    "updateSchema": "node ./src/scripts/updateSchema.mjs",
     "dev": "vite",
     "prebuild": "npm run updateSchema",
     "build": "vite build",
     "preview": "vite preview",
-    "validate:schema": "node ./src/scripts/schemaValidation.js"
+    "validate:schema": "node ./src/scripts/schemaValidation.mjs",
+    "addItems": "node ./src/scripts/addItems.mjs",
+    "addCategories": "node ./src/scripts/addCategories.mjs",
+    "removeCategories": "node ./src/scripts/removeCategories.mjs"
   },
   "dependencies": {
     "@headlessui/vue": "^1.7.22",
@@ -18,7 +21,7 @@
     "vue": "^3.4.21"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^5.0.4",
+    "@vite/plugin-vue": "^5.0.4",
     "autoprefixer": "^10.4.19",
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.3",

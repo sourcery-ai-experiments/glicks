@@ -100,10 +100,10 @@ const perks = ([
     name: 'We deliver to YOUR family',
     imageUrl: 'https://tailwindui.com/img/ecommerce/icons/icon-calendar-light.svg',
     description:
-      'We offer delivery to anywhere in Yerushalaim and you can call us from anywhere in the world.',
+      'We offer delivery to anywhere in Yerushalayim and you can call us from anywhere in the world.',
   },
   {
-    name: 'All year discount',
+    name: 'Gift your loved ones',
     imageUrl: 'https://tailwindui.com/img/ecommerce/icons/icon-gift-card-light.svg',
     description: 'You may be far from them geographically but you are so close in heart.',
   },
@@ -159,7 +159,7 @@ function getFilteredAndSortedItems(category) {
     }
 
     // Check if the item's category matches the current category
-    let isInCategory = item.description.categories.includes(category);
+    let isInCategory = item.description.category.includes(category);
 
     return isInCategory && matchesMilkCriteria;
   });
