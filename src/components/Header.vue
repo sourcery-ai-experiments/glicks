@@ -17,7 +17,7 @@
     </div>
     <nav class="flex items-center md:gap-10 justify-between py-2 lg:py-3 pl-1 lg:pl-2 pr-4 lg:pr-6" aria-label="Main navigation">
       <Logo class="min-w-min flex p-2 lg:p-2 xl:p-4">
-        <a href="#" class="h-min flex items-center">
+        <router-link to="/" class="h-min flex items-center">
           <span class="sr-only">Glicks Bakery</span>
           <img
             class="h-20 md:h-26 lg:h-28 w-auto min-w-fit rounded-md lg:rounded-full p-0.5 border-solid border-2 border-rose-300"
@@ -25,7 +25,7 @@
           <span
             class="flex lg:hidden ml-2 md:pl-2 text-amber-700 text-xl xs:text-2xl md:text-4xl font-cherrySwashScript">Glicks
             Bakery</span>
-        </a>
+        </router-link>
       </Logo>
       <!--Top nav items-->
       <div class="hidden lg:flex gap-x-0 xl:gap-x-12 justify-between ml-16">
