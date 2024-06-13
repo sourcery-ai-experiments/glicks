@@ -1,42 +1,17 @@
 [
   {
-    "id": 1,
     "name": "Cakes",
-    "checked": false
+    "checked": false,
+    "id": 1
   },
   {
-    "id": 2,
-    "name": "Chocolate",
-    "checked": false
-  },
-  {
-    "id": 3,
     "name": "Cookies",
-    "checked": false
+    "checked": false,
+    "id": 2
   },
   {
-    "id": 4,
-    "name": "Cupcakes",
-    "checked": false
-  },
-  {
-    "id": 5,
     "name": "Desserts",
-    "checked": false
-  },
-  {
-    "id": 10,
-    "name": "test2",
-    "checked": false
-  },
-  {
-    "id": 11,
-    "name": "test2",
-    "checked": false
-  },
-  {
-    "id": 12,
-    "name": "test3",
-    "checked": false
+    "checked": false,
+    "id": 3
   }
 ]

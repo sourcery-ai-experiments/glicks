@@ -16,7 +16,7 @@
                 <div
                   class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
                   <span class="flex select-none items-center pl-3 text-gray-500 sm:text-sm"></span>
-                  <input type="text" name="category-name" id="category-name" @model="newCategoryName"
+                  <input type="text" name="category-name" id="category-name" v-model="newCategoryName"
                     class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                     placeholder="Category name" />
                 </div>
@@ -44,28 +44,35 @@ import { watch, ref } from 'vue';
 
 
 const newCategoryName = ref('')
-const newCategory = ref([
+const newCategory = ref(
   {
-    "name": newCategoryName,
-    "checked": false,
-    "id": 20
-  }
-])
+    "name": newCategoryName
+  })
 
 async function addCategories(newCategories, event) {
-  event.preventDefault()  
+  event.preventDefault() 
+  alert('AI 57 Post launched') 
   try {
-    const response = await fetch('/.netlify/functions/updateCategories', {
+    alert('AI 59 Trying post.' + ' newCategories: ' + JSON.stringify(newCategories))
+    const token = localStorage.getItem('token');
+    const response = await fetch('/api/addCategory', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + 'token'
       },
       body: JSON.stringify(newCategories)
     });
-    const data = await response.json();
-    console.log(data)
+    if (!response.ok) {
+      throw new Error('Failed to update categories: ' + response.statusText + ' ' + JSON.stringify(response));
+    } else if (response.ok) {
+      alert('You have successfully added ' + newCategoryName.value + ' to categories')
+    }
+    const result = await response.json();
+    console.log(result)
+    
   } catch (error) {
-    console.log(error)
+    console.log('Error: ', error)
   }
 }
 
