@@ -8,7 +8,7 @@ const routes = [
   { path: '/:pathMatch(.*)*', component: NotFound },
 ];
 
-if (import.meta.env.VITE_LOCAL_ENV) {
+if (import.meta.env.VITE_LOCAL_ENV === 'true') {
   const Admin = () => import('./views/Admin.vue');
   routes.push({ path: '/admin', component: Admin });
 }

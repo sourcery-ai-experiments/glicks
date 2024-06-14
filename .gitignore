@@ -30,6 +30,7 @@ dist-ssr
 .env.local
 
 # Local admin feature for admnistering items and categories
-functions/
+functions/*
+functions
 src/views/Admin.vue
 src/components/addItem.vue
