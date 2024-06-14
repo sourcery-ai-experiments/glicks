@@ -12,7 +12,7 @@ const routes = [
 if (import.meta.env.VITE_LOCAL_ENV === 'true') {
   routes.push({
     path: '/admin',
-    component: () => import('./views/Admin.vue').catch(() => {
+    component: () => import('./views/admin/Admin.vue').catch(() => {
       console.error('Admin.vue not found');
       return NotFound;
     })

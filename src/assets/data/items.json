@@ -1,121 +1,98 @@
 [
-  {
-    "id": 1,
-    "name": "Classic Chocolate Cake",
-    "price": {
-      "$": 7,
-      "€": 6.5,
-      "£": 6,
-      "₪": 25
+    {
+        "id": 1,
+        "name": "Classic Chocolate Cake",
+        "price": {
+            "$": 7,
+            "€": 6.5,
+            "£": 6,
+            "₪": 25
+        },
+        "href": "#",
+        "imageSrc": "/perfect_chocolate_cake_crop.jpg",
+        "imageAlt": "Perfect crop of classic chocolate cake.",
+        "description": {
+            "short_text": "Classic and good!",
+            "text": "Placeholder for descriptive text for the item",
+            "allergens": [
+                "eggs",
+                "gluten"
+            ],
+            "category": "Cakes",
+            "tags": []
+        },
+        "milk": false
     },
-    "href": "#",
-    "imageSrc": "/perfect_chocolate_cake_crop.jpg",
-    "imageAlt": "Perfect crop of classic chocolate cake.",
-    "description": {
-      "short_text": "Classic and good!",
-      "text": "Placeholder for descriptive text for the item",
-      "allergens": [
-        "eggs",
-        "gluten"
-      ],
-      "category": "Cakes",
-      "tags": []
+    {
+        "id": 2,
+        "name": "Marble Cake",
+        "price": {
+            "$": 7,
+            "€": 6.5,
+            "£": 6,
+            "₪": 25
+        },
+        "href": "#",
+        "imageSrc": "/perfect_chocolate_cake_crop.jpg",
+        "imageAlt": "Perfect crop of classic chocolate cake.",
+        "description": {
+            "short_text": "Better than it looks!",
+            "text": "Placeholder for descriptive text for the item",
+            "allergens": [
+                "eggs",
+                "gluten"
+            ],
+            "category": "Cakes",
+            "tags": []
+        },
+        "milk": false
     },
-    "milk": false
-  },
-  {
-    "id": 2,
-    "name": "Marble Cake",
-    "price": {
-      "$": 7,
-      "€": 6.5,
-      "£": 6,
-      "₪": 25
+    {
+        "id": 3,
+        "name": "Chocolate Babke",
+        "price": {
+            "$": 7,
+            "€": 6.5,
+            "£": 6,
+            "₪": 25
+        },
+        "href": "#",
+        "imageSrc": "/perfect_chocolate_cake_crop.jpg",
+        "imageAlt": "Perfect crop of classic chocolate cake.",
+        "description": {
+            "short_text": "You'll love it!",
+            "text": "Placeholder for descriptive text for the item",
+            "allergens": [
+                "eggs",
+                "gluten"
+            ],
+            "category": "Cakes",
+            "tags": []
+        },
+        "milk": false
     },
-    "href": "#",
-    "imageSrc": "/perfect_chocolate_cake_crop.jpg",
-    "imageAlt": "Perfect crop of classic chocolate cake.",
-    "description": {
-      "short_text": "Better than it looks!",
-      "text": "Placeholder for descriptive text for the item",
-      "allergens": [
-        "eggs",
-        "gluten"
-      ],
-      "category": "Cakes",
-      "tags": []
-    },
-    "milk": false
-  },
-  {
-    "id": 3,
-    "name": "Chocolate Babke",
-    "price": {
-      "$": 7,
-      "€": 6.5,
-      "£": 6,
-      "₪": 25
-    },
-    "href": "#",
-    "imageSrc": "/perfect_chocolate_cake_crop.jpg",
-    "imageAlt": "Perfect crop of classic chocolate cake.",
-    "description": {
-      "short_text": "You'll love it!",
-      "text": "Placeholder for descriptive text for the item",
-      "allergens": [
-        "eggs",
-        "gluten"
-      ],
-      "category": "Cakes",
-      "tags": []
-    },
-    "milk": false
-  },
-  {
-    "id": 4,
-    "name": "Classic Chocolate Chip Cookies",
-    "price": {
-      "$": 7,
-      "€": 6.5,
-      "£": 6,
-      "₪": 25
-    },
-    "href": "#",
-    "imageSrc": "/classic-chocolate-chip-cookies.jpg",
-    "imageAlt": "Perfect crop of classic chocolate cake.",
-    "description": {
-      "short_text": "It's good",
-      "text": "Placeholder for descriptive text for the item",
-      "allergens": [
-        "eggs",
-        "gluten"
-      ],
-      "category": "Cookies",
-      "tags": []
-    },
-    "milk": false
-  },
-  {
-    "id": 5,
-    "name": "test",
-    "price": {
-      "$": 6,
-      "₪": 20,
-      "£": 5,
-      "€": 5.5
-    },
-    "href": "#",
-    "imageSrc": "/test.jpg",
-    "imageAlt": "test",
-    "description": {
-      "short_text": "test",
-      "text": "test",
-      "allergens": [
-        "test"
-      ],
-      "category": "Cakes",
-      "tags": []
-    },
-    "milk": false
-  }
+    {
+        "id": 4,
+        "name": "Classic Chocolate Chip Cookies",
+        "price": {
+            "$": 7,
+            "€": 6.5,
+            "£": 6,
+            "₪": 25
+        },
+        "href": "#",
+        "imageSrc": "/classic-chocolate-chip-cookies.jpg",
+        "imageAlt": "Perfect crop of classic chocolate cake.",
+        "description": {
+            "short_text": "It's good",
+            "text": "Placeholder for descriptive text for the item",
+            "allergens": [
+                "eggs",
+                "gluten"
+            ],
+            "category": "Cookies",
+            "tags": []
+        },
+        "milk": false
+    }
 ]

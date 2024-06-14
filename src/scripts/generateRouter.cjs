@@ -12,7 +12,11 @@ if (isLocalEnv) {
   const adminRoute = `
   {
     path: '/admin',
-    component: () => import('./views/Admin.vue')
+    component: () => import('./views/admin/Admin.vue')
+  },
+  {
+  path: '/admin/addItems',
+  component: () => import('./views/admin/AddItems.vue')
   }`;
   templateContent = templateContent.replace('// @admin-route', adminRoute);
 } else {

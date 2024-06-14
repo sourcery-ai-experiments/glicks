@@ -26,10 +26,12 @@
     "netlify-lambda": "^2.0.16",
     "serverless-http": "^3.2.0",
     "sharp": "^0.33.4",
+    "uuid": "^10.0.0",
     "vue": "^3.4.21",
     "vue-router": "^4.3.3"
   },
   "devDependencies": {
+    "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.7",
     "@vitejs/plugin-vue": "^5.0.4",
     "autoprefixer": "^10.4.19",

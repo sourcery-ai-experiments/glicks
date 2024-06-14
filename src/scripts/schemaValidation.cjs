@@ -26,17 +26,22 @@ function itemsSchemaValidation(itemsSchemaArg, itemsDataArg) {
     }
   });
 
- 
   const validateItems = ajv.compile(itemsSchemaArg);
 
   const validItems = validateItems(itemsDataArg);
 
   if (!validItems) {
     console.log("Items data is invalid: ", validateItems.errors, "Items error...");
-    return false;
+    return{
+      valid: false,
+      errors: validateItems.errors,
+    }
   } 
   console.log("Items data is valid!");
-  return true;
+  return {
+    valid: true,
+    errors: null,
+  }
 }
 
 function categoriesSchemaValidation(categoriesSchemaArg, categoriesDataArg) {
