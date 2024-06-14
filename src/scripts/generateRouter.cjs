@@ -3,8 +3,8 @@ const fs = require('fs');
 const path = require('path');
 
 const isLocalEnv = process.env.VITE_LOCAL_ENV === 'true';
-const templatePath = path.resolve(__dirname, '../src/router.template.js');
-const outputPath = path.resolve(__dirname, '../src/router.js');
+const templatePath = path.resolve(__dirname, '../router.template.js');
+const outputPath = path.resolve(__dirname, '../router.js');
 
 let templateContent = fs.readFileSync(templatePath, 'utf-8');
 
