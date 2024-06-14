@@ -23,10 +23,9 @@
         </p>
       </span>
     </div>
-    <nav class="flex items-center md:gap-10 justify-between py-2 lg:py-3 pl-1 lg:pl-2 pr-4 lg:pr-6"
-      aria-label="Main navigation">
+    <nav class="flex items-center gap-10 justify-between py-2 lg:py-3 pl-1 lg:pl-2 pr-4 lg:pr-6" aria-label="Main navigation">
       <Logo class="min-w-min flex p-2 lg:p-2 xl:p-4">
-        <router-link to="/" class="h-min flex items-center">
+        <a href="#" class="h-min flex items-center">
           <span class="sr-only">Glicks Bakery</span>
           <img
             class="h-20 md:h-26 lg:h-28 w-auto min-w-fit rounded-md lg:rounded-full p-0.5 border-solid border-2 border-rose-300"
@@ -34,7 +33,7 @@
           <span
             class="flex lg:hidden ml-2 md:pl-2 text-amber-700 text-xl xs:text-2xl md:text-4xl font-cherrySwashScript">Glicks
             Bakery</span>
-        </router-link>
+        </a>
       </Logo>
       <!--Top nav items-->
       <div class="hidden lg:flex gap-x-0 xl:gap-x-12 justify-between ml-16">
@@ -43,15 +42,24 @@
             item.name }}</a>
       </div>
       <!--Currency selector -->
-      <form class="mr-8 flex-shrink-0 relative">
-        <label for="currency-selector" class="sr-only">Currency</label>
-        <select id="currency-selector" name="currency-selector" @change="updateCurrency"
-          class="text-2xl h-8 w-8 text-center rounded-full pb-1 px-1 text-gray-900 disabled:text-gray-500 hover:text-black bg-gray-200 hover:bg-amber-100 active:bg-amber-200 disabled:hover:bg-gray-200 border-none focus-visible:outline-none">
-          <option class="bg-gray-100 font-sans" v-for="currency in currencies" :key="currency">{{ currency }}
-          </option>
-        </select>
-        <ChevronDownIcon class="h-5 w-5 absolute top-1/2 right-1/2 text-gray-500" aria-hidden="true" />
-      </form>
+      <div>
+        <form>
+          <div>
+            <label for="currency-selector" class="sr-only">Currency</label>
+            <div
+              class="mr-8 flex-shrink-0">
+              <select id="currency-selector" name="currency-selector" @change="updateCurrency"
+                class="text-2xl h-min rounded-full pb-1 px-1 text-gray-900 disabled:text-gray-500 hover:text-black bg-gray-200 hover:bg-amber-100 active:bg-amber-200 disabled:hover:bg-gray-200 flex-shrink-0 border-none focus-visible:outline-none">
+                <option class="bg-gray-100 font-sans" v-for="currency in currencies" :key="currency">{{ currency }}
+                </option>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center">
+                <ChevronDownIcon class="h-5 w-5 text-gray-500" aria-hidden="true" />
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
 
       <div class="flex">
         <button type="button"
