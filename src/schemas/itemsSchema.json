@@ -52,20 +52,24 @@
           "allergens": {
             "type": "array"
           },
-          "categories": {
-            "type": "array",
+          "category": {
+            "type": "string",
             "enum": [
               "Cakes",
               "Chocolate",
               "Cookies",
               "Cupcakes",
-              "Desserts"
+              "Desserts",
+              "test2",
+              "test3",
+              "test4",
+              "test5"
             ]
           }
         },
         "required": [
           "allergens",
-          "categories"
+          "category"
         ]
       },
       "milk": {

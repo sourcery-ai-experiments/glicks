@@ -4,20 +4,29 @@
     <div class="bg-gradient-to-r from-rose-400 to-rose-600 h-min">
       <span class=" flex md:flex items-center justify-between px-4 py-1 text-sm font-medium text-white">
         <p class="hidden sm:flex items-center justify-start">
-          <a href="tel:+025373737" class="text-white flex items-center"><PhoneIcon class="fill-current w-3 hidden md:block" /><span class="text-white hover:text-white">&nbsp; IL: 025-373737 &nbsp;</span></a>
-          <a href="tel:+44 20 7123 4567" class="hidden md:block text-white"><span class="text-white hover:text-white">&nbsp; UK: +44 20 7123 4567 &nbsp;</span></a>
-          <a href="tel:(555) 555-1234" class="text-white hidden lg:block"><span class="text-white hover:text-white">&nbsp; US: (555) 555-1234</span></a>
+          <a href="tel:+025373737" class="text-white hover:fill-white flex items-center">
+            <PhoneIcon class="fill-white stroke-gray-50 w-3 hidden md:block" /><span class="text-white">&nbsp; IL:
+              025-373737 &nbsp;</span>
+          </a>
+          <a href="tel:+44 20 7123 4567" class="hidden md:block text-white"><span
+              class="text-white">&nbsp; UK: +44 20 7123 4567 &nbsp;</span></a>
+          <a href="tel:(555) 555-1234" class="text-white hidden lg:block"><span
+              class="text-white">&nbsp; US: (555) 555-1234</span></a>
         </p>
         <p>
           <span>
-            <span class="text-white flex items-center"><TruckIcon class="w-5 stroke-2" /><span class="text-white hover:text-white text-xs sm:text-sm">&nbsp; We deliver to all areas in <span class=" text-amber-200">Yerushalaim.</span></span></span>
+            <span class="text-white flex items-center">
+              <TruckIcon class="w-5 stroke-2" /><span class="text-white text-xs sm:text-sm">&nbsp; We
+                deliver to all areas in <span class=" text-amber-200">Yerushalayim.</span></span>
+            </span>
           </span>
         </p>
       </span>
     </div>
-    <nav class="flex items-center md:gap-10 justify-between py-2 lg:py-3 pl-1 lg:pl-2 pr-4 lg:pr-6" aria-label="Main navigation">
+    <nav class="flex items-center md:gap-10 justify-between py-2 lg:py-3 pl-1 lg:pl-2 pr-4 lg:pr-6"
+      aria-label="Main navigation">
       <Logo class="min-w-min flex p-2 lg:p-2 xl:p-4">
-        <a href="#" class="h-min flex items-center">
+        <router-link to="/" class="h-min flex items-center">
           <span class="sr-only">Glicks Bakery</span>
           <img
             class="h-20 md:h-26 lg:h-28 w-auto min-w-fit rounded-md lg:rounded-full p-0.5 border-solid border-2 border-rose-300"
@@ -25,7 +34,7 @@
           <span
             class="flex lg:hidden ml-2 md:pl-2 text-amber-700 text-xl xs:text-2xl md:text-4xl font-cherrySwashScript">Glicks
             Bakery</span>
-        </a>
+        </router-link>
       </Logo>
       <!--Top nav items-->
       <div class="hidden lg:flex gap-x-0 xl:gap-x-12 justify-between ml-16">
@@ -34,7 +43,7 @@
             item.name }}</a>
       </div>
       <!--Currency selector -->
-      <div class="hidden md:block">
+      <div>
         <form>
           <div>
             <label for="currency-selector" class="sr-only">Currency</label>

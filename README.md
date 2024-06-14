@@ -1,32 +1,41 @@
 # Glicks Heimishe Bakery
 
 ## Glicks bakery
-Glicks bakery is a bakery that started off in someones home in Jerusalem and is now setting up a small location for baking and they deliver their goods. 
-The bakery serves Jerusalem neighberhoods and takes orders from anyone but as mentioned delivers only
-in Jerusalem.
+Glicks bakery started off in someones home in Jerusalem and is now setting up a small location for baking and they deliver their goods. 
+The bakery serves Jerusalem neighberhoods and takes orders from anyone, anywhere but as mentioned delivers only
+within Jerusalem.
 
 ## The site
-This is a simple static website with one or more static webpages.
-The site is a Catelogue for a developing bakery 'Glicks'.
-The items are saved in a json file/s in the assets directory and imported as needed.
+This is a simple static website with a few static webpages.
+The site is a Catelogue for the developing bakery 'Glicks'.
+The items are saved in json files in the assets/data directory and imported as needed.
 
-The main page will either display all items devided into categories and criteria, or
-they will only be partially displayed and the rest will be displayed in a seperate page for each category.
+The main page displays all items devided into categories.
+They will be partially displayed with the rest shown on a seperate page for each category.
 
-## What the site won't have
+### Filters
+The items can be filtered by category and by Milk/Parve status.
 
-The site will not have a login page or any kind of back end functionalities.
-The will not have any ordering logics whatsoever there will only be contact 
-info and item info.
-The site will not have any kind of payment functionality.
+## How items and categories will be added:
+Items will only be added by developers, by pulling the repo and running the site locally.
+In a local enviroment, there is an admin interface at /admin and netlify functions for making api requests. In the admin interface items, categories, and tags can be added, edited, or removed.
+
+### Note
+The admin inteface is ***not*** available in the netlify deploys (it is removed
+ when the deploys gets built; see [package.json](/package.json) and [netlify.toml]
+ (/netlify.toml)).
+
+## What the Site Won't Have for the Forseeable Future
+#### Per Client's Request:
+- The site will not have a login page or any kind of back end functionalities.
+- The site will not have any ordering logic; there will only be contact info and
+ item info.
+- The site will not have any kind of payment functionality.
 
 ## The site might have
-The site might have a search function but limited to front end
-The site might have an admin interface to add items and categories but that too 
-will be limited to front end.
+- The site might have a search function but limited to the front end
 
 
 ## Other info about this project
-The App loads the header footer and content templates.
-The content template loads the filters template gets the filter info from it and displays the items accordingly.
+The App loads the page according to [router.js](/src/router.js)
 

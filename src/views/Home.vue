@@ -1,0 +1,17 @@
+<script setup>
+import { reactive, provide } from 'vue';
+import Header from '../components/Header.vue';
+import Content from '../components/Content.vue';
+import Footer from '../components/Footer.vue';
+
+const currencyState = reactive({
+  selectedCurrency: '₪'
+})
+provide('currencyState', currencyState)
+</script>
+
+<template>
+    <Header />
+    <Content />
+    <Footer />
+</template>
