@@ -8,7 +8,7 @@
     "generateRouter": "node ./src/scripts/generateRouter.cjs",
     "dev": "vite",
     "prebuild": "npm run updateSchema",
-    "build": "generateRouter && vite build",
+    "build": "npm run generateRouter && vite build",
     "preview": "vite preview",
     "validate:schema": "node ./src/scripts/schemaValidation.mjs",
     "addItems": "node ./src/scripts/addItems.mjs",
