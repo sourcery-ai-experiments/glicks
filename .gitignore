@@ -30,5 +30,3 @@ dist-ssr
 .env.local
 
 # Local admin feature for admnistering items and categories
-functions
-src/views/admin
