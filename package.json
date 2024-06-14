@@ -9,7 +9,7 @@
     "dev": "vite",
     "prebuild": "npm run updateSchema",
     "build": "npm run generateRouter && vite build",
-    "build:netlify":"rm -rf ./src/views/admin && rm -rf ./functions && build",
+    "build:netlify":"npm run rm -rf ./src/views/admin && rm -rf ./functions && build",
     "preview": "vite preview",
     "validate:schema": "node ./src/scripts/schemaValidation.mjs",
     "addItems": "node ./src/scripts/addItems.mjs",
