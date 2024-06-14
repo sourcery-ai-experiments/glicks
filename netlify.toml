@@ -1,4 +1,5 @@
 [build]
+  command = "npm run build:netlify"
   functions = "functions"
 
 [[redirects]]
