@@ -8,9 +8,12 @@ const routes = [
   { path: '/:pathMatch(.*)*', component: NotFound },
 ];
 
+// Conditionally add the Admin route if in local environment
 if (import.meta.env.VITE_LOCAL_ENV === 'true') {
-  const Admin = () => import('./views/Admin.vue');
-  routes.push({ path: '/admin', component: Admin });
+  routes.push({
+    path: '/admin',
+    component: () => import('./views/Admin.vue')
+  });
 }
 
 const router = createRouter({
