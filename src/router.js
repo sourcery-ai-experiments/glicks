@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Admin from './views/Admin.vue';
 import Home from './views/Home.vue'; // Assuming you have a Home component
 import NotFound from './views/NotFound.vue';
 
