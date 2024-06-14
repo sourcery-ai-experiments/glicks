@@ -28,3 +28,8 @@ dist-ssr
 
 # Local env files
 .env
+
+# Local admin feature for admnistering items and categories
+functions/
+src/views/Admin.vue
+src/components/addItem.vue
