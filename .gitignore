@@ -27,7 +27,7 @@ dist-ssr
 .netlify
 
 # Local env files
-.env
+.env.local
 
 # Local admin feature for admnistering items and categories
 functions/

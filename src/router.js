@@ -5,10 +5,14 @@ import NotFound from './views/NotFound.vue';
 
 const routes = [
   { path: '/', component: Home },
-  { path: '/admin', component: Admin },
   // Set up a 404 page
   { path: '/:pathMatch(.*)*', component: NotFound },
 ];
+
+if (import.meta.env.VITE_LOCAL_ENV) {
+  const Admin = () => import('./views/Admin.vue');
+  routes.push({ path: '/admin', component: Admin });
+}
 
 const router = createRouter({
   history: createWebHistory(),
