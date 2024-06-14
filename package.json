@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "updateSchema": "node ./src/scripts/updateSchema.mjs",
-    "generate-router": "node scripts/generate-router.js",
+    "generate-router": "node ./src/scripts/generate-router.js",
     "dev": "vite",
     "prebuild": "npm run updateSchema",
     "build": "generate-router && vite build",
