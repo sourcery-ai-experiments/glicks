@@ -5,9 +5,10 @@
   "type": "module",
   "scripts": {
     "updateSchema": "node ./src/scripts/updateSchema.mjs",
+    "generate-router": "node scripts/generate-router.js",
     "dev": "vite",
     "prebuild": "npm run updateSchema",
-    "build": "vite build",
+    "build": "generate-router && vite build",
     "preview": "vite preview",
     "validate:schema": "node ./src/scripts/schemaValidation.mjs",
     "addItems": "node ./src/scripts/addItems.mjs",
