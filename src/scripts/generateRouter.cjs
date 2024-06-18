@@ -9,6 +9,7 @@ const outputPath = path.resolve(__dirname, '../router.js');
 let templateContent = fs.readFileSync(templatePath, 'utf-8');
 
 if (isLocalEnv) {
+  console.log('Generating router configuration for local environment');
   const adminRoute = `
   {
     path: '/admin',
