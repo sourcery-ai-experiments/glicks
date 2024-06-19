@@ -2,6 +2,10 @@
 const fs = require('fs');
 const path = require('path');
 
+// Log the environment variable to a file
+const logPath = path.resolve(__dirname, './generateRouter.log');
+fs.writeFileSync(logPath, `VITE_LOCAL_ENV: ${process.env.VITE_LOCAL_ENV}\n`, { flag: 'a' });
+
 const isLocalEnv = process.env.VITE_LOCAL_ENV === 'true';
 const templatePath = path.resolve(__dirname, '../router.template.js');
 const outputPath = path.resolve(__dirname, '../router.js');
@@ -9,7 +13,6 @@ const outputPath = path.resolve(__dirname, '../router.js');
 let templateContent = fs.readFileSync(templatePath, 'utf-8');
 
 if (isLocalEnv) {
-  console.log('Generating router configuration for local environment');
   const adminRoute = `
   {
     path: '/admin',

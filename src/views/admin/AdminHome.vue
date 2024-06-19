@@ -1,7 +1,7 @@
 <template>
-    <div class="bg-gray-100">
+    <div class="bg-inherit">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div class="mx-auto max-w-2xl py-16 sm:py-24 lg:max-w-none lg:py-32">
+            <div class="mx-auto max-w-2xl py-4 sm:py-6 lg:max-w-none lg:py-6">
                 <h2 class="text-2xl font-bold text-gray-900">Actions</h2>
 
                 <div class="mt-6 space-y-12 lg:grid lg:grid-cols-3 lg:gap-x-6 lg:space-y-0">
@@ -26,26 +26,30 @@
 </template>
 
 <script setup>
+import addItems from '@/assets/images/addItems.jpg'
+import addCategory from '@/assets/images/addCategory.jpg'
+import editItems from '@/assets/images/editItems.jpg'
+
 const callouts = [
     {
         name: 'Add new Items',
         description: 'Here you can add as many items as needed',
-        imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-02-edition-01.jpg',
-        imageAlt: 'Desk with leather desk pad, walnut desk organizer, wireless keyboard and mouse, and porcelain mug.',
+        imageSrc: addItems,
+        imageAlt: 'StockCake.com Delectable Bakery Display.',
         href: './addItems',
     },
     {
         name: 'Add new category',
         description: 'Here you can add a category',
-        imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-02-edition-02.jpg',
-        imageAlt: 'Wood table with porcelain mug, leather journal, brass pen, leather key ring, and a houseplant.',
+        imageSrc: addCategory,
+        imageAlt: 'pexels-solliefoto',
         href: './addCategory',
     },
     {
         name: 'Edit Items',
         description: 'Edit and delete items',
-        imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-02-edition-03.jpg',
-        imageAlt: 'Collection of four insulated travel bottles on wooden shelf.',
+        imageSrc: editItems,
+        imageAlt: 'pexels-igor-ovsyannykov',
         href: './editItems',
     },
     {

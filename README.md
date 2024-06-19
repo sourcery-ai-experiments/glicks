@@ -26,7 +26,7 @@ In a local enviroment, there is an admin interface at /admin and netlify functio
 
 ### How to use admin interface locally
 
-After pulling the repo a `.env` file has to be create with the following code:
+After pulling the repo a `.env.local` file has to be create with the following code:
 
 ```
 VITE_LOCAL_ENV=true
@@ -35,8 +35,7 @@ VITE_LOCAL_ENV=true
 ### Note
 
 The admin inteface is ***not*** available in the netlify deploys (it is removed
-when the deploys gets built; see [package.json](/package.json) and [netlify.toml]
-(/netlify.toml)).
+when the deploys gets built; see [package.json](/package.json) and [netlify.toml](/netlify.toml).
 
 ## What the Site Won't Have for the Forseeable Future
 

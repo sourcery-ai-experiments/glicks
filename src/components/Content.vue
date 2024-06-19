@@ -12,7 +12,7 @@
           </h1>
         </div>
         <div class="relative mx-auto max-w-4xl flex justify-between text-white font-heading tracking-widest text-sm">
-        </div><img src="/images/main_image.png" class="w-full h-full absolute inset-0 object-cover opacity-70">
+        </div><img :src="mainImage" class="w-full h-full absolute inset-0 object-cover opacity-70">
       </div>
 
       <!-- Items listed by category or filter -->
@@ -85,7 +85,8 @@ import Filters from './Filters.vue';
 import ItemDialog from './ItemDialog.vue';
 import { ref, onMounted, computed, watch, inject } from 'vue'
 import itemsData from '../assets/data/items.json'
-import categoriesData from '../assets/data/categories.json'
+import categoriesData from '@/assets/data/categories.json'
+import mainImage from '@/assets/images/main_image.png'
 
 const items = ref(itemsData)
 const categories = ref(categoriesData)

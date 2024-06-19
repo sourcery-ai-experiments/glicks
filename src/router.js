@@ -7,6 +7,14 @@ const routes = [
   { path: '/', component: Home },
   { path: '/:pathMatch(.*)*', component: NotFound },
   
+  {
+    path: '/admin',
+    component: () => import('./views/admin/Admin.vue')
+  },
+  {
+  path: '/admin/addItems',
+  component: () => import('./views/admin/AddItems.vue')
+  }
 ];
 
 const router = createRouter({
