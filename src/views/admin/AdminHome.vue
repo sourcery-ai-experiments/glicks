@@ -36,7 +36,7 @@ const callouts = [
         description: 'Here you can add as many items as needed',
         imageSrc: addItems,
         imageAlt: 'StockCake.com Delectable Bakery Display.',
-        href: './addItems',
+        href: '/admin/addItems',
     },
     {
         name: 'Add new category',

@@ -13,7 +13,11 @@ const outputPath = path.resolve(__dirname, '../router.js');
 let templateContent = fs.readFileSync(templatePath, 'utf-8');
 
 if (isLocalEnv) {
-  const adminRoute = `
+  /**
+   * If the environment is local,
+   * add all admin routes listed to generated router.
+   */
+  const adminRoutes = `
   {
     path: '/admin',
     component: () => import('./views/admin/Admin.vue')
@@ -22,7 +26,7 @@ if (isLocalEnv) {
   path: '/admin/addItems',
   component: () => import('./views/admin/AddItems.vue')
   }`;
-  templateContent = templateContent.replace('// @admin-route', adminRoute);
+  templateContent = templateContent.replace('// @admin-route', adminRoutes);
 } else {
   templateContent = templateContent.replace('// @admin-route', '');
 }
