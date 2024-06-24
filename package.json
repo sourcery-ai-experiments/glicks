@@ -6,7 +6,7 @@
   "scripts": {
     "updateSchema": "node ./src/scripts/updateSchema.mjs",
     "generateRouter": "node ./src/scripts/generateRouter.cjs",
-    "dev": "vite",
+    "dev": "npm run generateRouter && vite",
     "prebuild": "npm run updateSchema",
     "build": "npm run generateRouter && vite build",
     "build:netlify":"rm -rf ./src/views/admin && rm -rf ./functions && npm run build",

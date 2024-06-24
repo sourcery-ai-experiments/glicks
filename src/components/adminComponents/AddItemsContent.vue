@@ -1,4 +1,21 @@
 <template>
+  <!--
+  This example requires some changes to your config:
+  
+  ```
+  // tailwind.config.js
+  module.exports = {
+    // ...
+    plugins: [
+      // ...
+      require('@tailwindcss/forms'),
+    ],
+  }
+  ```
+-->
+  <!-- New form code will be changed to add items form with option to add more than one item at a time -->
+  <AddItemForm />
+  <!-- Old form code logic will be transferred to new form -->
   <div class="space-y-10 divide-y divide-gray-900/10">
     <div class="grid grid-cols-1 gap-x-8 gap-y-8 md:grid-cols-3">
       <div class="px-4 sm:px-0">
@@ -41,7 +58,7 @@
 <script setup>
 import { PhotoIcon, UserCircleIcon } from '@heroicons/vue/24/solid'
 import { watch, ref } from 'vue';
-
+import AddItemForm from './AddItemForm.vue';
 
 const newCategoryName = ref('')
 const newCategory = ref(
@@ -50,8 +67,8 @@ const newCategory = ref(
   })
 
 async function addCategories(newCategories, event) {
-  event.preventDefault() 
-  alert('AI 57 Post launched') 
+  event.preventDefault()
+  alert('AI 57 Post launched')
   try {
     alert('AI 59 Trying post.' + ' newCategories: ' + JSON.stringify(newCategories))
     const token = localStorage.getItem('token');
@@ -70,7 +87,7 @@ async function addCategories(newCategories, event) {
     }
     const result = await response.json();
     console.log(result)
-    
+
   } catch (error) {
     console.log('Error: ', error)
   }

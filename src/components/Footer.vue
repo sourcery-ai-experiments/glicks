@@ -51,8 +51,6 @@
 </template>
 
 <script setup>
-import { defineComponent, h } from 'vue'
-
 const footerNavigation = {
   products: [
     { name: 'Cakes', href: '#Cakes' },
