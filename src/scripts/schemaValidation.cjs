@@ -34,9 +34,11 @@ function itemsSchemaValidation(itemsSchemaArg, itemsDataArg) {
     console.log("Items data is invalid: ", validateItems.errors, "Items error...");
     return{
       valid: false,
+      statusCode: 400,
       errors: validateItems.errors,
     }
   } 
+  
   console.log("Items data is valid!");
   return {
     valid: true,
