@@ -8,6 +8,6 @@
 
 <script setup>
 import AdminHeader from '@/components/adminComponents/AdminHeader.vue';
-import AdminHome from './AdminHome.vue';
+import AdminHome from '@/components/adminComponents/AdminHome.vue';
 import AdminFooter from '@/components/adminComponents/AdminFooter.vue';
 </script>

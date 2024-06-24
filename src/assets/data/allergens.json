@@ -1,0 +1,52 @@
+[
+    {
+        "id": 1,
+        "name": "Peanuts",
+        "checked": false
+    },
+    {
+        "id": 2,
+        "name": "Dairy",
+        "checked": false
+    },
+    {
+        "id": 3,
+        "name": "Eggs",
+        "checked": false
+    },
+    {
+        "id": 4,
+        "name": "Gluten",
+        "checked": false
+    },
+    {
+        "id": 5,
+        "name": "Soy",
+        "checked": false
+    },
+    {
+        "id": 6,
+        "name": "Fish",
+        "checked": false
+    },
+    {
+        "id": 7,
+        "name": "Nuts",
+        "checked": false
+    },
+    {
+        "id": 8,
+        "name": "Almonds",
+        "checked": false
+    },
+    {
+        "id": 9,
+        "name": "Sesame",
+        "checked": false
+    },
+    {
+        "id": 10,
+        "name": "Hazelnuts",
+        "checked": false
+    }
+]
