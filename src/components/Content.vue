@@ -53,11 +53,12 @@
         </div>
       </div>
 
+      <!-- Perks section -->
       <section aria-labelledby="perks-heading" class="border-t border-gray-200 bg-gray-50">
         <h2 id="perks-heading" class="sr-only">Our perks</h2>
 
         <div class="mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
-          <div class="grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-0">
+          <div class="grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4 lg:gap-x-8 lg:gap-y-0">
             <div v-for="perk in perks" :key="perk.name"
               class="text-center md:flex md:items-start md:text-left lg:block lg:text-center">
               <div class="md:flex-shrink-0">
@@ -98,6 +99,11 @@ const itemCurrency = computed(() => currencyState.selectedCurrency);
 
 const perks = ([
   {
+    name: 'We take phone orders only',
+    imageUrl: '/images/phone-50-256.png',
+    description: "We don't take online orders. Please choose what you would like to order and call us at one of our numbers provided."
+  },
+  {
     name: 'We deliver to YOUR family',
     imageUrl: 'https://tailwindui.com/img/ecommerce/icons/icon-calendar-light.svg',
     description:
@@ -109,9 +115,9 @@ const perks = ([
     description: 'You may be far from them geographically but you are so close in heart.',
   },
   {
-    name: 'Call us now from around the world',
+    name: 'Call us from around the world',
     imageUrl: 'https://tailwindui.com/img/ecommerce/icons/icon-planet-light.svg',
-    description: 'We have special for our customers abroad american and British phone numbers.',
+    description: 'We have for our customers abroad - American and British phone numbers.',
   },
 ])
 
