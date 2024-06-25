@@ -17,7 +17,7 @@
 
       <!-- Items listed by category or filter -->
       <div v-if="noItems" class="my-8 text-gray-600 text-3xl font-bold">
-        <span >
+        <span>
           Sorry but we dont have that
         </span>
       </div>
@@ -27,7 +27,8 @@
             :id="`${category.name}`">
             <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:mt-12 lg:px-8 lg:mt-12 bg-inherit -pt-24">
               <div class="md:flex md:items-center md:justify-between">
-                <h2 id="favorites-heading" class="text-4xl font-bold tracking-tight text-gray-700">{{ category.name }}
+                <h2 id="favorites-heading" class="text-4xl font-bold tracking-tight text-gray-700">{{
+                  category.name }}
                 </h2>
               </div>
               <div
@@ -35,7 +36,8 @@
                 <div v-for="item in getFilteredAndSortedItems(category.name)" :key="item.id"
                   class="group relative bg-white w-5/6 rounded-lg shadow-md pb-3">
                   <div class="h-56 w-full overflow-hidden rounded-md group-hover:opacity-75 lg:h-72 xl:h-80 ">
-                    <img :src="'/images/'+item.imageSrc" :alt="item.imageAlt" class="h-full w-full object-cover object-center" />
+                    <img :src="'/images/' + item.imageSrc" :alt="item.imageAlt"
+                      class="h-full w-full object-cover object-center" />
                   </div>
                   <h3 class="mt-4 text-sm text-gray-700">
                     <a @click="openModal(item)" type="button">
@@ -49,44 +51,32 @@
                 </div>
               </div>
             </div>
+            <div v-if="getFilteredAndSortedItems(category.name, Infinity).length > 2" class="mt-4">
+              <router-link :to="`/categories/category/${category.name.toLowerCase()}`" class="text-blue-600 hover:text-blue-800">
+                View all {{ category.name }}
+              </router-link>
+            </div>
           </section>
         </div>
       </div>
 
-      <section aria-labelledby="perks-heading" class="border-t border-gray-200 bg-gray-50">
-        <h2 id="perks-heading" class="sr-only">Our perks</h2>
+      <Perks />
 
-        <div class="mx-auto max-w-7xl px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
-          <div class="grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-0">
-            <div v-for="perk in perks" :key="perk.name"
-              class="text-center md:flex md:items-start md:text-left lg:block lg:text-center">
-              <div class="md:flex-shrink-0">
-                <div class="flow-root">
-                  <img class="-my-1 mx-auto h-24 w-auto" :src="perk.imageUrl" alt="" />
-                </div>
-              </div>
-              <div class="mt-6 md:ml-4 md:mt-0 lg:ml-0 lg:mt-6">
-                <h3 class="text-base font-medium text-gray-900">{{ perk.name }}</h3>
-                <p class="mt-3 text-sm text-gray-500">{{ perk.description }}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
       <ItemDialog :isOpen="open" :item="selectedItem" :itemCurrency="itemCurrency" @update:isOpen="open = $event" />
     </main>
-
-
   </div>
 </template>
 
 <script setup>
 import Filters from './Filters.vue';
+import PaginatedItems from './PaginatedItems.vue';
+import Paginator from './Paginator.vue';
 import ItemDialog from './ItemDialog.vue';
-import { ref, onMounted, computed, watch, inject } from 'vue'
-import itemsData from '../assets/data/items.json'
-import categoriesData from '@/assets/data/categories.json'
-import mainImage from '@/assets/images/main_image.png'
+import Perks from './Perks.vue';
+import { ref, onMounted, computed, watch, inject } from 'vue';
+import itemsData from '../assets/data/items.json';
+import categoriesData from '@/assets/data/categories.json';
+import mainImage from '@/assets/images/main_image.png';
 
 const items = ref(itemsData)
 const categories = ref(categoriesData)
@@ -94,26 +84,6 @@ const categories = ref(categoriesData)
 const currencyState = inject('currencyState', () => ('$'));
 
 const itemCurrency = computed(() => currencyState.selectedCurrency);
-
-
-const perks = ([
-  {
-    name: 'We deliver to YOUR family',
-    imageUrl: 'https://tailwindui.com/img/ecommerce/icons/icon-calendar-light.svg',
-    description:
-      'We offer delivery to anywhere in Yerushalayim and you can call us from anywhere in the world.',
-  },
-  {
-    name: 'Gift your loved ones',
-    imageUrl: 'https://tailwindui.com/img/ecommerce/icons/icon-gift-card-light.svg',
-    description: 'You may be far from them geographically but you are so close in heart.',
-  },
-  {
-    name: 'Call us now from around the world',
-    imageUrl: 'https://tailwindui.com/img/ecommerce/icons/icon-planet-light.svg',
-    description: 'We have special for our customers abroad american and British phone numbers.',
-  },
-])
 
 const selectedSort = ref({})
 const selectedCategories = ref([])
@@ -149,7 +119,7 @@ const filteredCategories = computed(() => {
     }
   })
 })
-function getFilteredAndSortedItems(category) {
+function getFilteredAndSortedItems(category, limit = 2) {
   if (!items.value) return [];
   let itemsReturned = items.value.filter(item => {
     let matchesMilkCriteria = true;
@@ -164,9 +134,8 @@ function getFilteredAndSortedItems(category) {
 
     return isInCategory && matchesMilkCriteria;
   });
-  return itemsReturned;
+  return itemsReturned.slice(0, limit);
 }
-
 /**
  * Checks if according to selected categories and filter there are no items
  * @requires filteredCategories
