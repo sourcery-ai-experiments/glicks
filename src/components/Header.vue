@@ -53,15 +53,6 @@
               placeholder="search" v-model="search">
           </div>
           <div>
-            <label for="currency-selector" class="sr-only">Currency</label>
-            <div class="mr-8 flex-shrink-0">
-              <select id="currency-selector" name="currency-selector" @change="updateCurrency"
-                class="text-2xl h-min rounded-full pb-1 px-1 text-gray-900 disabled:text-gray-500 hover:text-black bg-gray-200 hover:bg-amber-100 active:bg-amber-200 disabled:hover:bg-gray-200 flex-shrink-0 border-none focus-visible:outline-none">
-                <option class="bg-gray-100 font-sans" v-for="currency in currencies" :key="currency">{{ currency }}
-                </option>
-              </select>
-              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center">
-                <ChevronDownIcon class="h-5 w-5 text-gray-500" aria-hidden="true" />
             <button type="submit"
               class="flex items-center justify-center w-12 h-12 text-gray-500 rounded-r-lg rounded-l-none disabled:bg-gray-500"
               :class="(search.length > 0) ? 'bg-amber-200 hover:bg-amber-300' : 'bg-amber-100 hover:bg-amber-100 text-gray-300 disabled'">
@@ -85,6 +76,7 @@
           <ChevronDownIcon class="h-5 w-5 text-gray-500" aria-hidden="true" />
         </div>
       </div>
+
 
       <div class="flex">
         <button type="button"
@@ -115,7 +107,8 @@
         <div class="mt-6 flow-root">
           <div class="-my-6 divide-y divide-gray-500/10">
             <div class="space-y-2 py-6">
-              <RouterLink :to="`/categories/category/${item.name.toLowerCase()}`" v-for="item in navigation" :key="item.name" @click="mobileMenuOpen = false"
+              <RouterLink :to="`/categories/category/${item.name.toLowerCase()}`" v-for="item in navigation"
+                :key="item.name" @click="mobileMenuOpen = false"
                 class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 bg-none hover:bg-amber-100 hover:text-black">
                 {{ item.name }}
               </RouterLink>
@@ -147,9 +140,9 @@ const updateSearch = (event) => {
 
 
 const navigation = [
-  { name: 'Cakes'},
-  { name: 'Cookies'},
-  { name: 'Kedeishim'}
+  { name: 'Cakes' },
+  { name: 'Cookies' },
+  { name: 'Kedeishim' }
 ]
 
 const currencies = ['₪', '$', '€', '£']
