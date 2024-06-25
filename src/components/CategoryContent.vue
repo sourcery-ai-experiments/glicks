@@ -10,7 +10,7 @@
     </div>
     <div v-if="categoryImageSrc !== ''" class="relative mx-auto max-w-4xl flex justify-between text-white font-heading tracking-widest text-sm">
     </div>
-    <img v-if="categoryImageSrc !== ''" :src="categoryImageSrc" class="w-full h-full absolute inset-0 object-cover opacity-70">
+    <img v-if="categoryImageSrc !== ''" :src="mainImage" class="w-full h-full absolute inset-0 object-cover opacity-70">
   </div>
   <div v-if="noItems" class="my-8 font-bold">
     <span class="text-gray-600 text-3xl">
@@ -52,7 +52,14 @@ import ItemDialog from './ItemDialog.vue';
 
 const categoryImageSrc = computed(() => {
   const category = categoriesData.find(category => category.name === categoryName.value);
-  return category ? `/src/assets/images/${category.imageSrc}` : '';
+  return category ? category.imageSrc : '';
+});
+
+const mainImage = computed(() => {
+  if (categoryImageSrc.value) {
+    return new URL(`../assets/images/${categoryImageSrc.value}`, import.meta.url).href;
+  }
+  return '';
 });
 
 const route = useRoute();
