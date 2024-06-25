@@ -44,9 +44,14 @@
           {{ item.name }}
         </RouterLink>
       </div>
-      <!--Currency selector -->
-      <div>
-        <form>
+      <!--Search bar-->
+      <div class="grid grid-cols-1 grid-flow-row">
+        <div class="hidden md:flex items-center max-w-md mx-auto bg-gray-50 rounded-lg text-gray-500"
+          x-data="{ search: '' }">
+          <div class="w-full">
+            <input type="search" class="w-full px-4 py-1 text-gray-800 rounded-full focus:outline-none bg-gray-50"
+              placeholder="search" v-model="search">
+          </div>
           <div>
             <label for="currency-selector" class="sr-only">Currency</label>
             <div class="mr-8 flex-shrink-0">
@@ -57,10 +62,28 @@
               </select>
               <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center">
                 <ChevronDownIcon class="h-5 w-5 text-gray-500" aria-hidden="true" />
+            <button type="submit"
+              class="flex items-center justify-center w-12 h-12 text-gray-500 rounded-r-lg rounded-l-none disabled:bg-gray-500"
+              :class="(search.length > 0) ? 'bg-amber-200 hover:bg-amber-300' : 'bg-amber-100 hover:bg-amber-100 text-gray-300 disabled'">
+              <div class=" w-36">
+                <MagnifyingGlassIcon class="h-4 w-auto stroke-2" aria-hidden="true" />
               </div>
-            </div>
+            </button>
           </div>
-        </form>
+        </div>
+        <span v-if="(search.length > 0)" class="text-gray-500 text-start ml-3 mt-0.5">search for: {{ search }}</span>
+      </div>
+      <!--Currency selector -->
+      <label for="currency-selector" class="sr-only">Currency</label>
+      <div class="mr-8 flex-shrink-0">
+        <select id="currency-selector" name="currency-selector" @change="updateCurrency"
+          class="text-2xl h-min w-auto aspect-1 rounded-full pb-1 px-1 text-gray-900 disabled:text-gray-500 hover:text-black bg-gray-200 hover:bg-amber-100 active:bg-amber-200 disabled:hover:bg-gray-200 flex-shrink-0 border-none focus-visible:outline-none">
+          <option class="bg-gray-100 font-sans" v-for="currency in currencies" :key="currency">{{ currency }}
+          </option>
+        </select>
+        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center">
+          <ChevronDownIcon class="h-5 w-5 text-gray-500" aria-hidden="true" />
+        </div>
       </div>
 
       <div class="flex">
@@ -114,7 +137,14 @@
 import { inject, ref, watch } from 'vue'
 import Logo from './Logo.vue'
 import { Dialog, DialogPanel } from '@headlessui/vue';
-import { Bars3Icon, XMarkIcon, ChevronDownIcon, PhoneIcon, TruckIcon } from '@heroicons/vue/24/outline'
+import { Bars3Icon, XMarkIcon, ChevronDownIcon, PhoneIcon, TruckIcon, MagnifyingGlassIcon } from '@heroicons/vue/24/outline'
+
+// define x data for search bar
+const search = ref('')
+const updateSearch = (event) => {
+  search.value = event.target.value
+}
+
 
 const navigation = [
   { name: 'Cakes'},

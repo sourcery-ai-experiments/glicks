@@ -9,7 +9,7 @@
     "dev": "npm run generateRouter && vite",
     "prebuild": "npm run updateSchema",
     "build": "npm run generateRouter && vite build",
-    "build:netlify":"rm -rf ./src/views/admin && rm -rf ./functions && npm run build",
+    "build:netlify": "rm -rf ./src/views/admin && rm -rf ./netlify && npm run build",
     "preview": "vite preview",
     "validate:schema": "node ./src/scripts/schemaValidation.mjs",
     "addItems": "node ./src/scripts/addItems.mjs",
@@ -17,6 +17,9 @@
     "removeCategories": "node ./src/scripts/removeCategories.mjs"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@fortawesome/vue-fontawesome": "^3.0.8",
     "@headlessui/vue": "^1.7.22",
     "@heroicons/vue": "^2.1.3",
     "ajv-formats": "^3.0.1",
