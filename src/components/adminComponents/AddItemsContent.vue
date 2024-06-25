@@ -57,7 +57,7 @@
 
 <script setup>
 import { PhotoIcon, UserCircleIcon } from '@heroicons/vue/24/solid'
-import { watch, ref } from 'vue';
+import { watch, ref, watchEffect } from 'vue';
 import AddItemForm from './AddItemForm.vue';
 
 const newCategoryName = ref('')
@@ -94,5 +94,7 @@ async function addCategories(newCategories, event) {
 }
 
 // watch for when newcategoryname changes
-
+watchEffect(() => {
+  console.log('newCategoryName changed to:'+ newCategoryName.value)
+})
 </script>

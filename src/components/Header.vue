@@ -23,10 +23,11 @@
         </p>
       </span>
     </div>
+
     <nav class="flex items-center md:gap-10 justify-between py-2 lg:py-3 pl-1 lg:pl-2 pr-4 lg:pr-6"
       aria-label="Main navigation">
       <Logo class="min-w-min flex p-2 lg:p-2 xl:p-4">
-        <router-link to="/" class="h-min flex items-center">
+        <RouterLink to="/" class="h-min flex items-center">
           <span class="sr-only">Glicks Bakery</span>
           <img
             class="h-20 md:h-26 lg:h-28 w-auto min-w-fit rounded-md lg:rounded-full p-0.5 border-solid border-2 border-rose-300"
@@ -34,13 +35,14 @@
           <span
             class="flex lg:hidden ml-2 md:pl-2 text-amber-700 text-xl xs:text-2xl md:text-4xl font-cherrySwashScript">Glicks
             Bakery</span>
-        </router-link>
+        </RouterLink>
       </Logo>
       <!--Top nav items-->
       <div class="hidden lg:flex gap-x-0 xl:gap-x-12 justify-between ml-16">
-        <a v-for="item in navigation" :key="item.name" :href="item.href"
-          class="text-xl lg:text-2xl font-extrabold font-cherrySwashScript leading-6 h-min rounded-md py-3 px-2 lg:px-3 text-gray-900 hover:bg-amber-100 hover:text-black flex-shrink-0">{{
-            item.name }}</a>
+        <RouterLink :to="`/categories/category/${item.name.toLowerCase()}`" v-for="item in navigation" :key="item.name"
+          class="text-xl lg:text-2xl font-extrabold font-cherrySwashScript leading-6 h-min rounded-md py-3 px-2 lg:px-3 text-gray-900 hover:bg-amber-100 hover:text-black flex-shrink-0">
+          {{ item.name }}
+        </RouterLink>
       </div>
       <!--Search bar-->
       <div class="grid grid-cols-1 grid-flow-row">
@@ -51,6 +53,15 @@
               placeholder="search" v-model="search">
           </div>
           <div>
+            <label for="currency-selector" class="sr-only">Currency</label>
+            <div class="mr-8 flex-shrink-0">
+              <select id="currency-selector" name="currency-selector" @change="updateCurrency"
+                class="text-2xl h-min rounded-full pb-1 px-1 text-gray-900 disabled:text-gray-500 hover:text-black bg-gray-200 hover:bg-amber-100 active:bg-amber-200 disabled:hover:bg-gray-200 flex-shrink-0 border-none focus-visible:outline-none">
+                <option class="bg-gray-100 font-sans" v-for="currency in currencies" :key="currency">{{ currency }}
+                </option>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center">
+                <ChevronDownIcon class="h-5 w-5 text-gray-500" aria-hidden="true" />
             <button type="submit"
               class="flex items-center justify-center w-12 h-12 text-gray-500 rounded-r-lg rounded-l-none disabled:bg-gray-500"
               :class="(search.length > 0) ? 'bg-amber-200 hover:bg-amber-300' : 'bg-amber-100 hover:bg-amber-100 text-gray-300 disabled'">
@@ -84,6 +95,7 @@
         </button>
       </div>
     </nav>
+    <!-- Mobile menu -->
     <Dialog @close="mobileMenuOpen = false" :open="mobileMenuOpen">
       <div class="fixed inset-0 z-10" />
       <DialogPanel
@@ -103,10 +115,10 @@
         <div class="mt-6 flow-root">
           <div class="-my-6 divide-y divide-gray-500/10">
             <div class="space-y-2 py-6">
-              <a v-for="item in navigation" :key="item.name" :href="item.href" @click="mobileMenuOpen = false"
+              <RouterLink :to="`/categories/category/${item.name.toLowerCase()}`" v-for="item in navigation" :key="item.name" @click="mobileMenuOpen = false"
                 class="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 bg-none hover:bg-amber-100 hover:text-black">
                 {{ item.name }}
-              </a>
+              </RouterLink>
             </div>
             <div class="space-y-2 py-6">
               <a href="#contact-us" @click="mobileMenuOpen = false"
@@ -135,9 +147,9 @@ const updateSearch = (event) => {
 
 
 const navigation = [
-  { name: 'Cakes', href: '#Cakes' },
-  { name: 'Cookies', href: '#Cookies' },
-  { name: 'Kedeishim', href: '#Kedeishim' },
+  { name: 'Cakes'},
+  { name: 'Cookies'},
+  { name: 'Kedeishim'}
 ]
 
 const currencies = ['₪', '$', '€', '£']
