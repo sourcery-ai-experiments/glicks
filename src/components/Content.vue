@@ -10,6 +10,10 @@
           <h1 class="text-white text-center text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-display font-bold mb-12">
             A taste you recognize
           </h1>
+          <h2 class="text-white text-center text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-serif font-bold mb-12">
+            with a Kashrus you trust
+            <img />
+          </h2>
         </div>
         <div class="relative mx-auto max-w-4xl flex justify-between text-white font-heading tracking-widest text-sm">
         </div><img :src="mainImage" class="w-full h-full absolute inset-0 object-cover opacity-70">
