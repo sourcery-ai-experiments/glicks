@@ -16,5 +16,11 @@
     "checked": false,
     "id": 3,
     "imageSrc": ""
+  },
+  {
+    "name": "Muffins",
+    "checked": false,
+    "id": 4,
+    "imageSrc": ""
   }
 ]

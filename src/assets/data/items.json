@@ -96,22 +96,25 @@
         "milk": false
     },
     {
-        "id": 5,
-        "name": "fake5",
+        "id": 6,
+        "name": "test1",
+        "price": {
+            "$": 2,
+            "₪": 2,
+            "£": 2,
+            "€": 2
+        },
+        "imageSrc": "/carrot_muffin.jpg",
+        "imageAlt": "test1",
         "description": {
-            "fake": "fake5",
+            "short_text": "test",
+            "text": "test",
             "allergens": [
-                null
+                "Eggs",
+                "Gluten"
             ],
             "category": "Cakes"
         },
-        "imageSrc": "/example.jpg",
-        "price": {
-            "₪": 45,
-            "$": 15,
-            "€": 13,
-            "£": 12
-        },
-        "milk": false
+        "milk": true
     }
 ]
