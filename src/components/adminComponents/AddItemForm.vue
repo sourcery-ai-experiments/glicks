@@ -1,17 +1,3 @@
-<!--
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
--->
 <template>
     <form>
         <div class="space-x-12">
@@ -27,7 +13,7 @@
                                 <span class="w-full flex justify-center my-2">
                                     <h3 class="text-gray-600 border-b border-gray-300 w-3/4">Item Name</h3>
                                 </span>
-                                <label for="username" class="flex pl-0.5 start-1 text-xs font-medium text-gray-900">
+                                <label for="item-name" class="flex pl-0.5 start-1 text-xs font-medium text-gray-900">
                                     Item Name
                                 </label>
                                 <div class="mt-1">
@@ -35,9 +21,9 @@
                                         class="w-full flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md bg-white">
                                         <span
                                             class="flex select-none items-center pl-3 text-gray-500 sm:text-sm"></span>
-                                        <input type="text" name="username" id="username" autocomplete="username"
+                                        <input type="text" name="item-name" id="item-name" autocomplete="username"
                                             class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 focus:outline-none sm:text-sm sm:leading-6"
-                                            placeholder="Baked good" v-model="items[0].name" />
+                                            placeholder="Baked good" v-model="itemNames" />
                                     </div>
                                 </div>
                             </div>
@@ -57,7 +43,8 @@
                                             </div>
                                             <input type="text" name="nis" id="nis"
                                                 class="block bg-white w-full rounded-md border-0 py-1.5 pl-7 pr-12 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 focus:outline-none sm:text-sm sm:leading-6"
-                                                placeholder="0.00" aria-describedby="nis-price" v-model="itemPrices[0]['₪']" />
+                                                placeholder="0.00" aria-describedby="nis-price"
+                                                v-model="itemPrices['₪']" />
                                             <div
                                                 class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
                                                 <span class="text-gray-500 sm:text-sm" id="nis-price">NIS</span>
@@ -74,7 +61,8 @@
                                             </div>
                                             <input type="text" name="gbp" id="gbp"
                                                 class="block bg-white w-full rounded-md border-0 py-1.5 pl-7 pr-12 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 focus:outline-none sm:text-sm sm:leading-6"
-                                                placeholder="0.00" aria-describedby="gbp-price" v-model="itemPrices[0]['£']" />
+                                                placeholder="0.00" aria-describedby="gbp-price"
+                                                v-model="itemPrices['£']" />
                                             <div
                                                 class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
                                                 <span class="text-gray-500 sm:text-sm" id="gbp-price">GBP</span>
@@ -92,7 +80,8 @@
                                             </div>
                                             <input type="text" name="usd" id="usd"
                                                 class="block bg-white w-full rounded-md border-0 py-1.5 pl-7 pr-12 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 focus:outline-none sm:text-sm sm:leading-6"
-                                                placeholder="0.00" aria-describedby="usd-price" v-model="itemPrices[0]['$']" />
+                                                placeholder="0.00" aria-describedby="usd-price"
+                                                v-model="itemPrices['$']" />
                                             <div
                                                 class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
                                                 <span class="text-gray-500 sm:text-sm" id="usd-price">USD</span>
@@ -109,7 +98,8 @@
                                             </div>
                                             <input type="text" name="euro" id="euro"
                                                 class="block bg-white w-full rounded-md border-0 py-1.5 pl-7 pr-12 text-gray-900 ring-1 ring-inset ring-gray-300 focus:outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                                placeholder="0.00" aria-describedby="euro-price" v-model="itemPrices[0]['€']" />
+                                                placeholder="0.00" aria-describedby="euro-price"
+                                                v-model="itemPrices['€']" />
                                             <div
                                                 class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
                                                 <span class="text-gray-500 sm:text-sm" id="euro-price">EUR</span>
@@ -129,7 +119,7 @@
                                 </label>
                                 <div class="mt-1 mb-4 h-32">
                                     <textarea id="about" name="about" rows="3"
-                                        placeholder="Write a few sentences about the item." v-model="itemDescriptions[0].text"
+                                        placeholder="Write a few sentences about the item." v-model="itemText"
                                         class="block w-full h-full rounded-md border-0 p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 focus:outline-none sm:text-sm sm:leading-6 bg-white" />
                                 </div>
                                 <!-- Short description input -->
@@ -143,7 +133,7 @@
                                             class="flex select-none items-center pl-3 text-gray-500 sm:text-sm"></span>
                                         <input type="text" name="username" id="username" autocomplete="username"
                                             class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 focus:outline-none sm:text-sm sm:leading-6"
-                                            placeholder="Baked good" v-model="itemDescriptions[0].short_text" />
+                                            placeholder="Baked good" v-model="itemShortText" />
                                     </div>
                                 </div>
                             </div>
@@ -160,7 +150,8 @@
                                     <li v-for="(allergen, index) in allergens" :key="allergen.name"
                                         :class="['w-full border-b border-gray-200', { 'border-none': index === allergens.length - 1 }]">
                                         <div class="flex items-center ps-3">
-                                            <input :id="`${allergen.name}-checkbox`" type="checkbox" value="" v-model="allergen.checked"
+                                            <input :id="`${allergen.name}-checkbox`" type="checkbox" value=""
+                                                v-model="allergen.checked"
                                                 class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 ">
                                             <label :for="`${allergen.name}-checkbox`"
                                                 class="w-full py-3 ms-2 text-sm font-medium text-gray-900">
@@ -173,14 +164,14 @@
                                 <div class="grid grid-cols-2 gap-2 rounded-xl bg-gray-200 p-2">
                                     <div>
                                         <input type="radio" name="option" id="milk" value="true" class="peer hidden"
-                                            checked v-model="items[0].milk" />
+                                            checked v-model="itemMilks" />
                                         <label for="milk"
                                             class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-blue-500 peer-checked:font-bold peer-checked:text-white">Milk</label>
                                     </div>
 
                                     <div>
-                                        <input type="radio" name="option" id="parave" value="false"
-                                            class="peer hidden" v-model="items[0].milk" />
+                                        <input type="radio" name="option" id="parave" value="false" class="peer hidden"
+                                            v-model="items.milk" />
                                         <label for="parave"
                                             class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-green-500 peer-checked:font-bold peer-checked:text-white">Parave</label>
                                     </div>
@@ -195,15 +186,29 @@
                                     Item photo
                                 </label>
                                 <div
-                                    class="mt-1 flex bg-white justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
-                                    <div class="text-center">
+                                    class="mt-1 flex bg-white justify-center rounded-lg border border-dashed border-gray-900/25 p-5">
+                                    <div v-if="imagePreview">
+                                        <div class="flex text-sm leading-6 text-gray-600">
+                                            <label for="file-upload" class="relative cursor-pointer rounded-md">
+                                                <img :src="imagePreview" alt="item photo" class="object-cover mb-5" />
+                                                <span
+                                                    class="rounded-md bg-gray-100 hover:bg-amber-100 active:bg-amber-200 hover:text-gray-700 px-2 py-1 font-semibold text-indigo-600">
+                                                    Change image
+                                                </span>
+                                                <p class="pl-1">or drag and drop</p>
+                                                <input id="file-upload" name="file-upload" type="file" class="sr-only"
+                                                    @change="handleImage" />
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div v-else class="text-center">
                                         <PhotoIcon class="mx-auto h-12 w-12 text-gray-300" aria-hidden="true" />
                                         <div class="mt-4 flex text-sm leading-6 text-gray-600">
-                                            <label for="file-upload"
+                                            <label for="file-upload" 
                                                 class="relative cursor-pointer rounded-md bg-gray-100 hover:bg-amber-100 active:bg-amber-200 hover:text-gray-700 px-2 font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2">
                                                 <span>Upload a file</span>
-                                                <input id="file-upload" name="file-upload" type="file"
-                                                    class="sr-only" />
+                                                <input id="file-upload" name="file-upload" type="file" class="sr-only"
+                                                    @change="handleImage" />
                                             </label>
                                             <p class="pl-1">or drag and drop</p>
                                         </div>
@@ -219,14 +224,16 @@
                                         Choose the category that best fits the item.
                                     </p>
                                     <div class="mt-6 space-y-6">
-                                        <div v-for="category in categories"
-                                            :key="category.id" class="flex items-center">
-                                            <input :id="category.id" name="notification-method" type="radio"
-                                                :checked="category.id === 'email'"
+                                        <div v-for="category in categories" :key="category.id"
+                                            class="flex items-center">
+                                            <input :id="category.id" name="category" type="radio"
+                                                :checked="category.checked" @change="selectCategory(category.id)"
+                                                :value="true"
                                                 class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600" />
                                             <label :for="category.id"
-                                                class="ml-3 block text-sm font-medium leading-6 text-gray-900">{{
-                                                category.name }}</label>
+                                                class="ml-3 block text-sm font-medium leading-6 text-gray-900">
+                                                {{ category.name }}
+                                            </label>
                                         </div>
                                     </div>
                                 </fieldset>
@@ -234,8 +241,7 @@
                         </div>
                     </div>
                     <!-- Add another item button -->
-                    <div
-                        class="m-10 p-6 grid grid-cols-1 w-5/6 justify-items-start shadow-lg rounded-lg bg-gray-50">
+                    <div class="m-10 p-6 grid grid-cols-1 w-5/6 justify-items-start shadow-lg rounded-lg bg-gray-50">
                         <button type="button"
                             class="relative block w-full rounded-lg border-2 border-dashed border-gray-300 p-12 text-center bg-white hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                             <SquaresPlusIcon class="mx-auto h-16 w-16 text-gray-500" aria-hidden="true" />
@@ -258,7 +264,7 @@
 </template>
 
 <script setup>
-import { ref, watchEffect } from 'vue';
+import { ref, watch, computed, reactive } from 'vue';
 import { PhotoIcon } from '@heroicons/vue/24/solid';
 import { SquaresPlusIcon } from '@heroicons/vue/24/outline';
 import categoriesData from '@/assets/data/categories.json';
@@ -267,34 +273,93 @@ import allergensData from '@/assets/data/allergens.json';
 const categories = ref(categoriesData);
 const allergens = ref(allergensData);
 
-const itemNames = ref([''])
-const itemPrices = ref([{
+const itemNames = ref('')
+const itemPrices = ref({
     "$": null,
     "€": null,
     "£": null,
     "₪": null
-}])
+})
 const itemImageSrcs = ref([''])
 const itemImageAlts = ref([''])
-const itemDescriptions = ref([{
-    short_text: '',
-    text: '',
-    allergens: [],
-    category: '',
-}])
-const itemMilks = ref([Boolean])
-const items = ref([{
-    "name": itemNames[0],
-    "price": itemPrices[0],
-    "imageSrc": itemImageSrcs[0],
-    "imageAlt": itemImageAlts[0],
-    "description": itemDescriptions[0],
-    "milk": itemMilks[0],
-}])
+const itemShortText = ref('');
+const itemText = ref('');
+const itemAllergens = ref([]);
+const selectedCategory = computed(() => {
+    const selected = categories.value.find((category) => category.checked);
+    return selected ? selected.name : '';
+})
 
-// When items is changed output new value to console
-watchEffect(() => {
-    console.log(itemNames.value[0]);
+const itemMilks = ref([Boolean])
+
+// ref for image file
+const image = ref(null);
+const imagePreview = ref(null);
+// Items object that contains all the above variables
+const items = computed(() => {
+    return {
+        names: itemNames.value,
+        prices: itemPrices.value,
+        image_srcs: itemImageSrcs.value,
+        image_alts: itemImageAlts.value,
+        descriptions: {
+            short_text: itemShortText.value,
+            text: itemText.value,
+            allergens: itemAllergens.value,
+            category: selectedCategory.value
+        },
+        milks: itemMilks.value,
+    }
+})
+
+// Method to handle category selection
+const selectCategory = (categoryId) => {
+    categories.value.forEach((category) => {
+        category.checked = category.id === categoryId;
+    });
+};
+
+// Handle image function
+const handleImage = (event) => {
+    const input = event.target;
+    const file = input.files[0];
+    const type = file.type;
+
+    if (file && type == 'image/jpeg' || type == 'image/png') {
+        imagePreview.value = URL.createObjectURL(file);
+        image.value = file;
+    }
+};
+
+
+// Watch for changes in itemNames and output new value to console
+watch(() => itemNames.value, (newValue) => {
+    console.log(newValue);
+});
+
+// Watch price change
+watch(() => itemPrices.value, (newValue) => {
+    console.log(newValue);
+});
+
+// Watch description change
+watch(() => itemText.value, (newValue) => {
+    console.log(newValue);
+});
+
+// Watch description.text change
+watch(() => itemShortText.value, (newValue) => {
+    console.log(newValue);
+});
+
+// Watch for changes in selected categories
+watch(() => selectedCategory.value, (newValue) => {
+    console.log(newValue);
+});
+
+// Watch for changes in items and output new value to console
+watch(() => items.value, (newValue) => {
+    console.log(newValue);
 });
 
 </script>
