@@ -21,7 +21,7 @@
   </section>
 </template>
 
-<script>
+<script setup>
 const perks = ([
   {
     name: 'We deliver to YOUR family',
