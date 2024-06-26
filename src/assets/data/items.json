@@ -113,5 +113,27 @@
             "£": 12
         },
         "milk": false
+    },
+    {
+        "id": 6,
+        "name": "test1",
+        "price": {
+            "$": 2,
+            "₪": 2,
+            "£": 2,
+            "€": 2
+        },
+        "imageSrc": "/carrot_muffin.jpg",
+        "imageAlt": "test1",
+        "description": {
+            "short_text": "test",
+            "text": "test",
+            "allergens": [
+                "Eggs",
+                "Gluten"
+            ],
+            "category": "Cakes"
+        },
+        "milk": true
     }
 ]

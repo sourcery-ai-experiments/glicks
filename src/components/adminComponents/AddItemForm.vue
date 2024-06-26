@@ -21,7 +21,7 @@
                     <span class="flex select-none items-center pl-3 text-gray-500 sm:text-sm"></span>
                     <input type="text" name="item-name" id="item-name" autocomplete="username"
                       class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 focus:outline-none sm:text-sm sm:leading-6"
-                      placeholder="Baked good" v-model="itemNames" />
+                      placeholder="Baked good" v-model="itemName" />
                   </div>
                 </div>
               </div>
@@ -39,7 +39,7 @@
                       </div>
                       <input type="text" name="nis" id="nis"
                         class="block bg-white w-full rounded-md border-0 py-1.5 pl-7 pr-12 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 focus:outline-none sm:text-sm sm:leading-6"
-                        placeholder="0.00" aria-describedby="nis-price" v-model="itemPrices['₪']" />
+                        placeholder="0.00" aria-describedby="nis-price" v-model="nisPrice" />
                       <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
                         <span class="text-gray-500 sm:text-sm" id="nis-price">NIS</span>
                       </div>
@@ -53,7 +53,7 @@
                       </div>
                       <input type="text" name="gbp" id="gbp"
                         class="block bg-white w-full rounded-md border-0 py-1.5 pl-7 pr-12 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 focus:outline-none sm:text-sm sm:leading-6"
-                        placeholder="0.00" aria-describedby="gbp-price" v-model="itemPrices['£']" />
+                        placeholder="0.00" aria-describedby="gbp-price" v-model="gbpPrice" />
                       <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
                         <span class="text-gray-500 sm:text-sm" id="gbp-price">GBP</span>
                       </div>
@@ -69,7 +69,7 @@
                       </div>
                       <input type="text" name="usd" id="usd"
                         class="block bg-white w-full rounded-md border-0 py-1.5 pl-7 pr-12 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 focus:outline-none sm:text-sm sm:leading-6"
-                        placeholder="0.00" aria-describedby="usd-price" v-model="itemPrices['$']" />
+                        placeholder="0.00" aria-describedby="usd-price" v-model="usdPrice" />
                       <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
                         <span class="text-gray-500 sm:text-sm" id="usd-price">USD</span>
                       </div>
@@ -83,7 +83,7 @@
                       </div>
                       <input type="text" name="euro" id="euro"
                         class="block bg-white w-full rounded-md border-0 py-1.5 pl-7 pr-12 text-gray-900 ring-1 ring-inset ring-gray-300 focus:outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                        placeholder="0.00" aria-describedby="euro-price" v-model="itemPrices['€']" />
+                        placeholder="0.00" aria-describedby="euro-price" v-model="eurPrice" />
                       <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
                         <span class="text-gray-500 sm:text-sm" id="euro-price">EUR</span>
                       </div>
@@ -132,7 +132,7 @@
                   <li v-for="(allergen, index) in allergens" :key="allergen.name"
                     :class="['w-full border-b border-gray-200', { 'border-none': index === allergens.length - 1 }]">
                     <div class="flex items-center ps-3">
-                      <input :id="`${allergen.name}-checkbox`" type="checkbox" value="" v-model="allergen.checked"
+                      <input :id="`${allergen.name}-checkbox`" type="checkbox" value="true" v-model="allergen.checked"
                         class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 ">
                       <label :for="`${allergen.name}-checkbox`"
                         class="w-full py-3 ms-2 text-sm font-medium text-gray-900">
@@ -145,14 +145,14 @@
                 <div class="grid grid-cols-2 gap-2 rounded-xl bg-gray-200 p-2">
                   <div>
                     <input type="radio" name="option" id="milk" value="true" class="peer hidden" checked
-                      v-model="itemMilks" />
+                      v-model="itemMilk" />
                     <label for="milk"
                       class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-blue-500 peer-checked:font-bold peer-checked:text-white">Milk</label>
                   </div>
 
                   <div>
                     <input type="radio" name="option" id="parave" value="false" class="peer hidden"
-                      v-model="items.milk" />
+                      v-model="itemMilk" />
                     <label for="parave"
                       class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-green-500 peer-checked:font-bold peer-checked:text-white">Parave</label>
                   </div>
@@ -204,12 +204,13 @@
                   </p>
                   <div class="mt-6 space-y-6">
                     <div v-for="category in categories" :key="category.id" class="flex items-center">
-                      <input :id="category.id" name="category" type="radio" :checked="category.checked"
+                      <input :id="category.id" name="category" type="radio" :checked="category.id === 1"
                         @change="selectCategory(category.id)" :value="true"
                         class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600" />
                       <label :for="category.id" class="ml-3 block text-sm font-medium leading-6 text-gray-900">
                         {{ category.name }}
                       </label>
+
                     </div>
                   </div>
                 </fieldset>
@@ -227,14 +228,21 @@
             </button>
           </div>
         </div>
+        <div class="flex items-center justify-center gap-x-6">
+          <button type="button" title="Submits the form and adds the item to the database" @click="handleSubmit"
+            class="text-sm font-semibold leading-6 text-green-600 ring-4 ring-green-600 bg-gray-50 hover:bg-green-600 hover:text-white active:ring-green-200">
+            Add Item
+          </button>
+          <button type="reset" title="Resets all form fields to their default values"
+            class="text-sm font-semibold leading-6 text-red-600 ring-4 ring-red-600 bg-gray-50 hover:bg-red-600 hover:text-white active:ring-red-200">
+            Cancel
+          </button>
+
+        </div>
       </div>
       <!-- END -->
-    </div>
+      <!-- Submit and cancel button -->
 
-    <div class="mt-6 flex items-center justify-end gap-x-6">
-      <button type="button" class="text-sm font-semibold leading-6 text-gray-900">Cancel</button>
-      <button type="submit"
-        class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
     </div>
   </form>
 </template>
@@ -248,42 +256,55 @@ import allergensData from '@/assets/data/allergens.json';
 
 const categories = ref(categoriesData);
 const allergens = ref(allergensData);
+const checkedallergens = computed(() => {
+  const checked = [];
+  allergens.value.forEach((allergen) => {
+    if (allergen.checked) {
+      checked.push(allergen.name);
+    }
+  });
+  return checked;
+});
 const itemImageAlt = ref('')
-const itemNames = ref('')
-const itemPrices = ref({
-  "$": null,
-  "€": null,
-  "£": null,
-  "₪": null
-})
+const itemName = ref('')
+const usdPrice = ref(null);
+const nisPrice = ref(null);
+const gbpPrice = ref(null);
+const eurPrice = ref(null);
 const itemShortText = ref('');
 const itemText = ref('');
 const itemAllergens = ref([]);
 const selectedCategory = computed(() => {
   const selected = categories.value.find((category) => category.checked);
-  return selected ? selected.name : '';
+  return selected ? selected.name : 'Cakes';
 })
 
-const itemMilks = ref([Boolean])
+const itemMilk = ref(true)
 
 // ref for image file
 const itemImage = ref(null);
+const itemImageName = ref('');
 
 const imagePreview = ref(null);
 // Items object that contains all the above variables
-const items = computed(() => {
+const item = computed(() => {
   return {
-    names: itemNames.value,
-    prices: itemPrices.value,
-    image_srcs: itemImage.value ? itemImage.value.name : '',
-    image_alts: itemImageAlt.value,
-    descriptions: {
+    name: itemName.value,
+    price: {
+      "$": parseInt(usdPrice.value),
+      "₪": parseInt(nisPrice.value),
+      "£": parseInt(gbpPrice.value),
+      "€": parseInt(eurPrice.value),
+    },
+    imageSrc: '/' + itemImageName.value,
+    imageAlt: itemName.value,
+    description: {
       short_text: itemShortText.value,
       text: itemText.value,
-      allergens: itemAllergens.value,
+      allergens: checkedallergens.value,
       category: selectedCategory.value
     },
-    milks: itemMilks.value,
+    milk: Boolean(itemMilk.value),
   }
 })
 
@@ -321,19 +342,24 @@ const handleImage = (event) => {
   const type = file.type;
 
   if (file && type == 'image/jpeg' || type == 'image/png') {
-    imagePreview.value = URL.createObjectURL(file);
-    itemImage.value = file;
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      imagePreview.value = reader.result;
+      itemImage.value = reader.result.split(',')[1]; // Get the base64 string without the prefix
+      itemImageName.value = file.name;
+    };
+    reader.readAsDataURL(file);
   }
 };
 
 
-// Watch for changes in itemNames and output new value to console
-watch(() => itemNames.value, (newValue) => {
+// Watch for changes in itemName and output new value to console
+watch(() => itemName.value, (newValue) => {
   console.log(newValue);
 });
 
 // Watch price change
-watch(() => itemPrices.value, (newValue) => {
+watch(() => item.value.prices, (newValue) => {
   console.log(newValue);
 });
 
@@ -352,11 +378,46 @@ watch(() => selectedCategory.value, (newValue) => {
   console.log(newValue);
 });
 
-// Watch for changes in items and output new value to console
-watch(() => items.value, (newValue) => {
+// Watch for changes in item and output new value to console
+watch(() => item.value, (newValue) => {
   console.log(newValue);
 });
 
+// Function that handles item submit
+async function handleSubmit(event) {
+  event.preventDefault();
+
+  // Send API post request with item and itemImage to netlify function
+  try {
+    const response = await fetch('/api/addItems', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        newItem: item.value,
+        newImage: {
+          file: itemImage.value,
+          name: itemImageName.value,
+        }
+      })
+    });
+    const data = await response.json();
+    console.log(JSON.stringify(data));
+    if (response.ok) {
+      alert('Item added successfully');
+      console.log(data.message)
+    } else {
+      alert('Error adding item');
+      throw new Error(data.error);
+    }
+  } catch (error) {
+    console.error(error);
+    alert('Error adding item: ' + error);
+  }
+
+  console.log(item.value);
+};
 </script>
 
 <style scoped>
