@@ -71,8 +71,6 @@
 
 <script setup>
 import Filters from './Filters.vue';
-import PaginatedItems from './PaginatedItems.vue';
-import Paginator from './Paginator.vue';
 import ItemDialog from './ItemDialog.vue';
 import Perks from './Perks.vue';
 import { ref, onMounted, computed, watch, inject } from 'vue';
