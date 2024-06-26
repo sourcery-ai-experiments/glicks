@@ -12,10 +12,10 @@
                                 class="h-full w-full object-cover object-center" />
                         </div>
                         <h3 class="mt-6 text-sm text-gray-500">
-                            <a :href="callout.href">
+                            <RouterLink :to="callout.href">
                                 <span class="absolute inset-0" />
                                 {{ callout.name }}
-                            </a>
+                            </RouterLink>
                         </h3>
                         <p class="text-base font-semibold text-gray-900">{{ callout.description }}</p>
                     </div>
