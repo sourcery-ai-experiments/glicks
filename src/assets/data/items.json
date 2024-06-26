@@ -96,25 +96,6 @@
         "milk": false
     },
     {
-        "id": 5,
-        "name": "fake5",
-        "description": {
-            "fake": "fake5",
-            "allergens": [
-                null
-            ],
-            "category": "Cakes"
-        },
-        "imageSrc": "/example.jpg",
-        "price": {
-            "₪": 45,
-            "$": 15,
-            "€": 13,
-            "£": 12
-        },
-        "milk": false
-    },
-    {
         "id": 6,
         "name": "test1",
         "price": {
