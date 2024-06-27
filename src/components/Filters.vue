@@ -1,39 +1,15 @@
 <template>
-  <div class="p-2 sm:p-0">
-    <!-- Mobile filter dialog -->
-    <div class="p-2 sm:hidden flex justify-between">
-      <Menu as="div" class="relative inline-block text-left">
-        <div>
-          <MenuButton
-            class="group inline-flex justify-center text-sm font-medium text-gray-900 bg-gray-200 hover:bg-amber-100 active:bg-amber-200">
-            Sort
-            <ChevronDownIcon class="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
-              aria-hidden="true" />
-          </MenuButton>
-        </div>
-
-        <transition enter-active-class="transition ease-out duration-200"
-          enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100"
-          leave-active-class="transition ease-in duration-100" leave-from-class="transform opacity-100 scale-100"
-          leave-to-class="transform opacity-0 scale-95">
-          <MenuItems
-            class="absolute left-0 z-10 mt-2 w-40 origin-top-left rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
-            <div class="py-1">
-              <MenuItem v-for="option in sortOptions" :key="option.name" v-slot="{ active }">
-              <a :href="option.href"
-                :class="[option.current ? 'font-medium text-gray-900' : 'text-gray-900', active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm']">{{
-                  option.name }}</a>
-              </MenuItem>
-            </div>
-          </MenuItems>
-        </transition>
-      </Menu>
+  <div class="p-2 sm:p-0 bg-gray-100">
+    <!-- Mobile filter button -->
+    <div class="p-2 sm:hidden  flex justify-between gap-10">
+      <Search class=" grid sm:hidden" />
       <button type="button"
-        class="flex text-sm font-medium text-gray-700 hover:text-gray-900 bg-gray-200 hover:bg-amber-100 active:bg-amber-200 sm:hidden"
+        class="flex text-sm font-medium leading-6 h-fit text-gray-700 hover:text-gray-900 bg-gray-200 hover:bg-amber-100 active:bg-amber-200 sm:hidden"
         @click="toggleFiltersMobile">
         Filters
       </button>
     </div>
+    <!-- Mobile filter dialog -->
     <TransitionRoot as="template" :show="filtersVisibleMobile">
       <Dialog class="relative z-40 sm:hidden">
         <TransitionChild as="template" enter="transition-opacity ease-linear duration-300" enter-from="opacity-0"
@@ -136,35 +112,8 @@
     </button>
     <section v-show="filtersVisible" aria-labelledby="filter-heading" class="hidden sm:block">
       <h2 id="filter-heading" class="sr-only">Filters</h2>
-      <!--Sort button-->
       <div class="border-b border-gray-200 bg-white p-3">
         <div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-          <Menu as="div" class="relative inline-block text-left">
-            <div>
-              <MenuButton
-                class="group inline-flex justify-center text-sm font-medium text-gray-900 bg-gray-200 hover:bg-amber-100 active:bg-amber-200">
-                Sort
-                <ChevronDownIcon class="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
-                  aria-hidden="true" />
-              </MenuButton>
-            </div>
-
-            <transition enter-active-class="transition ease-out duration-200"
-              enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100"
-              leave-active-class="transition ease-in duration-100" leave-from-class="transform opacity-100 scale-100"
-              leave-to-class="transform opacity-0 scale-95">
-              <MenuItems
-                class="absolute left-0 z-10 mt-2 w-40 origin-top-left rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
-                <div class="py-1">
-                  <MenuItem v-for="option in sortOptions" :key="option.name" v-slot="{ active }">
-                  <a :href="option.href" @click="handleSortChange(option)"
-                    :class="[option.current ? 'font-medium text-gray-900' : 'text-gray-900', active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm']">
-                    {{ option.name }}</a>
-                  </MenuItem>
-                </div>
-              </MenuItems>
-            </transition>
-          </Menu>
           <div class="hidden sm:block">
             <div class="flow-root">
               <PopoverGroup class="-mx-4 flex items-center divide-x divide-gray-200">
@@ -240,7 +189,6 @@
           </div>
         </div>
       </div>
-
       <!-- Active filters -->
       <div>
         <div
@@ -281,17 +229,13 @@
 </template>
 
 <script setup>
-import { ref, computed, watch, compile, onMounted } from 'vue'
+import { ref, computed, watch } from 'vue'
 import {
   Dialog,
   DialogPanel,
   Disclosure,
   DisclosureButton,
   DisclosurePanel,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuItems,
   Popover,
   PopoverButton,
   PopoverGroup,
@@ -301,13 +245,8 @@ import {
 } from '@headlessui/vue'
 import { XMarkIcon } from '@heroicons/vue/24/outline'
 import { ChevronDownIcon } from '@heroicons/vue/20/solid'
+import Search from './Search.vue'
 import categoriesData from '../assets/data/categories.json'
-
-const sortOptions = [
-  { name: 'Most Popular', href: '#', current: true },
-  { name: 'Best Rating', href: '#', current: false },
-  { name: 'Newest', href: '#', current: false },
-]
 
 const categories = ref(categoriesData)
 const milkOptions = ref([])
@@ -395,7 +334,8 @@ function removeFilter(activeFilter) {
   }
 }
 
-const emits = defineEmits(['update:categories', 'update:milk', 'update:sort'])
+const emits = defineEmits(['update:categories', 'update:milk'])
+
 
 watch(checkedMilkOptions, (newMilkOptions) => {
   console.log('Milk options changed to: ', newMilkOptions)
@@ -406,11 +346,5 @@ watch(checkedCategories, (newCategories) => {
   console.log('Categories changed. Now checked: ', newCategories)
   emits('update:categories', newCategories);
 }, { deep: true });
-
-
-function handleSortChange(event) {
-  console.log('sort changed to: ', event)
-  emits('update:sort', event)
-}
 
 </script>

@@ -25,6 +25,36 @@
           Sorry but we dont have that
         </span>
       </div>
+      <div v-else-if="searching">
+        <section aria-labelledby="items-listed">
+          <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:mt-12 lg:px-8 lg:mt-12 bg-inherit -pt-24">
+            <div class="md:flex md:items-center md:justify-between">
+              <h2 id="favorites-heading" class="text-4xl font-bold tracking-tight text-gray-700">
+                This is what we found for you
+              </h2>
+            </div>
+            <div
+              class="mt-6 opacity-9 grid grid-cols-1 gap-y-10 sm:gap-x-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 lg:gap-x-0 justify-items-center">
+              <div v-for="item in displayResults" :key="item.id"
+                class="group relative bg-white w-5/6 rounded-lg shadow-md pb-3">
+                <div class="h-56 w-full overflow-hidden rounded-md group-hover:opacity-75 lg:h-72 xl:h-80 ">
+                  <img :src="'/images/' + item.imageSrc" :alt="item.imageAlt"
+                    class="h-full w-full object-cover object-center" />
+                </div>
+                <h3 class="mt-4 text-sm text-gray-700">
+                  <a @click="openModal(item)" type="button">
+                    <span class="absolute inset-0"></span>
+                    {{ item.name }}
+                  </a>
+                </h3>
+                <p class="mt-1 text-sm font-medium text-gray-900">
+                  {{ itemCurrency + item.price[itemCurrency] }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div> 
       <div v-else>
         <div v-for="category in filteredCategories">
           <section v-if="getFilteredAndSortedItems(category.name).length > 0" aria-labelledby="items-listed"
@@ -56,9 +86,10 @@
               </div>
             </div>
             <div v-if="getFilteredAndSortedItems(category.name, Infinity).length > 2" class="mt-4">
-              <router-link :to="`/categories/category/${category.name.toLowerCase()}`" class="text-blue-600 hover:text-blue-800">
+              <RouterLink :to="`/categories/category/${category.name.toLowerCase()}`"
+                class="text-blue-600 hover:text-blue-800">
                 View all {{ category.name }}
-              </router-link>
+              </RouterLink>
             </div>
           </section>
         </div>
@@ -73,10 +104,11 @@
 import Filters from './Filters.vue';
 import ItemDialog from './ItemDialog.vue';
 import Perks from './Perks.vue';
-import { ref, onMounted, computed, watch, inject } from 'vue';
+import { ref, computed, watch, inject } from 'vue';
 import itemsData from '../assets/data/items.json';
 import categoriesData from '@/assets/data/categories.json';
 import mainImage from '@/assets/images/main_image.png';
+import { RouterLink } from 'vue-router';
 
 const items = ref(itemsData)
 const categories = ref(categoriesData)
@@ -88,7 +120,10 @@ const itemCurrency = computed(() => currencyState.selectedCurrency);
 const selectedSort = ref({})
 const selectedCategories = ref([])
 const selectedMilkOptions = ref("")
-
+const searchResults = inject('searchResults');
+const displayResults = ref([])
+const searching = ref(false)
+const searchNoItems = ref(false)
 function handleSortUpdate(option) {
   selectedSort.value = option;
 }
@@ -104,6 +139,41 @@ function handleCategoriesUpdate(categories) {
     console.log(selectedCategories.value)
   }
 }
+
+function handleSearch(search) {
+  if (!items.value) return [];
+  // return all items that id equals one of search.unique
+  // Sort the items according to search.matchType 'exact', 'secondary', 'fuzzy'
+  results.sort((a, b) => {
+    if (search.matchType === 'exact') {
+      return a.name.localeCompare(b.name);
+    } else if (search.matchType === 'secondary') {
+      return a.secondaryName.localeCompare(b.secondaryName);
+    } else if (search.matchType === 'fuzzy') {
+      return a.name.localeCompare(b.name);
+    }
+  });
+  searching.value = true;
+  searchResults.value = results;
+}
+
+watch(searchResults, (newVal) => {
+  searching.value = true;
+  console.log(newVal)
+  if (newVal && newVal.unique.length > 0) {
+    console.log(newVal)
+    const results = items.value.filter(item => newVal.unique.includes(item.id));
+    // Logic for sort shall be implemented
+    // Log all names
+    console.log(results.forEach(item => item.name))
+    displayResults.value = results;
+  } else {
+    console.log(newVal)
+    searchNoItems.value = true;
+    console.log('searchNoItems: ', searchNoItems.value)
+    console.log('noItems: ', noItems.value)
+  }
+})
 
 const filteredCategories = computed(() => {
   if (!categories.value) return [];
@@ -144,6 +214,9 @@ function getFilteredAndSortedItems(category, limit = 2) {
  */
 const noItems = computed(() => {
   if (!filteredCategories.value) return true;
+  if (searchNoItems.value) {
+    return true;
+  }
   for (let category of filteredCategories.value) {
     let items = getFilteredAndSortedItems(category.name);
     if (items.length > 0) {
