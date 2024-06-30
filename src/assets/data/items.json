@@ -33,7 +33,7 @@
             "₪": 25
         },
         "href": "#",
-        "imageSrc": "/perfect_chocolate_cake_crop.jpg",
+        "imageSrc": "/marble_cake.jpg",
         "imageAlt": "Perfect crop of classic chocolate cake.",
         "description": {
             "short_text": "Better than it looks!",
@@ -57,7 +57,7 @@
             "₪": 25
         },
         "href": "#",
-        "imageSrc": "/perfect_chocolate_cake_crop.jpg",
+        "imageSrc": "/babke.jpg",
         "imageAlt": "Perfect crop of classic chocolate cake.",
         "description": {
             "short_text": "You'll love it!",
@@ -97,7 +97,7 @@
     },
     {
         "id": 6,
-        "name": "test1",
+        "name": "Carrot muffins",
         "price": {
             "$": 2,
             "₪": 2,
