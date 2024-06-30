@@ -296,8 +296,8 @@ const item = computed(() => {
       "£": parseInt(gbpPrice.value),
       "€": parseInt(eurPrice.value),
     },
-    imageSrc: '/' + itemImageName.value,
-    imageAlt: itemName.value,
+
+    imageSrc: `${itemName.value?.toLowerCase().replace(/\s+/g, '_')}.jpg`, imageAlt: itemName.value,
     description: {
       short_text: itemShortText.value,
       text: itemText.value,
@@ -352,32 +352,6 @@ const handleImage = (event) => {
   }
 };
 
-
-// Watch for changes in itemName and output new value to console
-watch(() => itemName.value, (newValue) => {
-  console.log(newValue);
-});
-
-// Watch price change
-watch(() => item.value.prices, (newValue) => {
-  console.log(newValue);
-});
-
-// Watch description change
-watch(() => itemText.value, (newValue) => {
-  console.log(newValue);
-});
-
-// Watch description.text change
-watch(() => itemShortText.value, (newValue) => {
-  console.log(newValue);
-});
-
-// Watch for changes in selected categories
-watch(() => selectedCategory.value, (newValue) => {
-  console.log(newValue);
-});
-
 // Watch for changes in item and output new value to console
 watch(() => item.value, (newValue) => {
   console.log(newValue);
@@ -398,7 +372,7 @@ async function handleSubmit(event) {
         newItem: item.value,
         newImage: {
           file: itemImage.value,
-          name: itemImageName.value,
+          name: `${item.value.name.toLowerCase().replace(/\s+/g, '_')}.jpg`,
         }
       })
     });
