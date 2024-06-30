@@ -31,11 +31,6 @@ exports.handler = async (event) => {
 
         const data = await readFile(itemsFilePath, 'utf8');
         const items = JSON.parse(data);
-        /** 
-         * Check if item with same name or image or description exists 
-         * if yes return error 400 
-         * if not push item into existing items
-        */
 
         newId = getHighestId(items) + 1;
         let itemExists = items.some(existingItem =>
@@ -82,7 +77,7 @@ exports.handler = async (event) => {
                 body: JSON.stringify({ error: '82 Image must contain a name and an image file' })
             }
         }
-        if ('/' + newImage.name !== newItem.imageSrc) {
+        if (newImage.name !== newItem.imageSrc) {
             return {
                 statusCode: 400,
                 body: JSON.stringify({ error: '88 ImageSrc must match the name of an image' })
