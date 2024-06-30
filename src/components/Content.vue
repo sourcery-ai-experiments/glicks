@@ -85,7 +85,7 @@
                 </div>
               </div>
             </div>
-            <div v-if="getFilteredAndSortedItems(category.name, Infinity).length > 2" class="mt-4">
+            <div v-if="getFilteredAndSortedItems(category.name, Infinity).length > 6" class="mt-4">
               <RouterLink :to="`/categories/category/${category.name.toLowerCase()}`"
                 class="text-blue-600 hover:text-blue-800">
                 View all {{ category.name }}
