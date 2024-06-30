@@ -9,7 +9,7 @@
             "₪": 25
         },
         "href": "#",
-        "imageSrc": "/perfect_chocolate_cake_crop.jpg",
+        "imageSrc": "perfect_chocolate_cake_crop.jpg",
         "imageAlt": "Perfect crop of classic chocolate cake.",
         "description": {
             "short_text": "Classic and good!",
@@ -33,7 +33,7 @@
             "₪": 25
         },
         "href": "#",
-        "imageSrc": "/marble_cake.jpg",
+        "imageSrc": "marble_cake.jpg",
         "imageAlt": "Perfect crop of classic chocolate cake.",
         "description": {
             "short_text": "Better than it looks!",
@@ -57,7 +57,7 @@
             "₪": 25
         },
         "href": "#",
-        "imageSrc": "/babke.jpg",
+        "imageSrc": "babke.jpg",
         "imageAlt": "Perfect crop of classic chocolate cake.",
         "description": {
             "short_text": "You'll love it!",
@@ -81,7 +81,7 @@
             "₪": 25
         },
         "href": "#",
-        "imageSrc": "/classic-chocolate-chip-cookies.jpg",
+        "imageSrc": "classic-chocolate-chip-cookies.jpg",
         "imageAlt": "Perfect crop of classic chocolate cake.",
         "description": {
             "short_text": "It's good",
@@ -104,7 +104,7 @@
             "£": 2,
             "€": 2
         },
-        "imageSrc": "/carrot_muffin.jpg",
+        "imageSrc": "carrot_muffin.jpg",
         "imageAlt": "test1",
         "description": {
             "short_text": "test",
