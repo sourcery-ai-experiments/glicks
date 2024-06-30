@@ -124,9 +124,6 @@ const searchResults = inject('searchResults');
 const displayResults = ref([]);
 const searching = ref(false);
 const searchNoItems = ref(false);
-function handleSortUpdate(option) {
-  selectedSort.value = option;
-}
 
 function handleMilkOptionsUpdate(options) {
   selectedMilkOptions.value = options;
@@ -168,7 +165,7 @@ const filteredCategories = computed(() => {
     }
   })
 })
-function getFilteredAndSortedItems(category, limit = 2) {
+function getFilteredAndSortedItems(category) {
   if (!items.value) return [];
   let itemsReturned = items.value.filter(item => {
     let matchesMilkCriteria = true;
@@ -183,7 +180,7 @@ function getFilteredAndSortedItems(category, limit = 2) {
 
     return isInCategory && matchesMilkCriteria;
   });
-  return itemsReturned.slice(0, limit);
+  return itemsReturned.slice(0, 6);
 }
 /**
  * Checks if according to selected categories and filter there are no items
