@@ -74,10 +74,10 @@
       <DialogPanel
         class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
         <div class="flex items-center justify-between">
-          <a href="#" class="-m-1.5 p-1.5">
+          <RouterLink href="/" class="-m-1.5 p-1.5">
             <span class="sr-only">Glicks Bakery</span>
             <img class="h-14 w-auto rounded-full" src="/favicon/favicon-glicks.png" alt="" />
-          </a>
+          </RouterLink>
           <button type="button"
             class="-m-2.5 rounded-md p-2.5 text-gray-800 bg-gray-200 hover:bg-amber-100 active:bg-amber-200 active:border-none"
             @click="mobileMenuOpen = false">
@@ -113,6 +113,7 @@ import Logo from './Logo.vue';
 import Search from './Search.vue';
 import { Dialog, DialogPanel } from '@headlessui/vue';
 import { Bars3Icon, XMarkIcon, ChevronDownIcon, PhoneIcon, TruckIcon } from '@heroicons/vue/24/outline'
+import { RouterLink } from 'vue-router';
 
 const navigation = [
   { name: 'Cakes' },
