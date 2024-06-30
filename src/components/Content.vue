@@ -1,11 +1,12 @@
 <template>
   <Filters @update:milk="handleMilkOptionsUpdate"
     @update:categories="handleCategoriesUpdate" />
-  <div class="bg-[linear-gradient(0deg,_#ffffff_-18%,_#fffdfe_48%,_#f3bbbb_138%)]">
+  <div class="">
     <!-- Mobile menu -->
     <main>
       <!-- Hero section -->
-      <div class="relative w-full py-12 px-12 bg-amber-950">
+      <div v-if="!searching"
+        class="relative w-full py-12 px-12 bg-amber-950">
         <div class="relative z-10 text-center my-20 md:my-48">
           <h1 class="text-white text-center text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-display font-bold mb-12">
             A taste you recognize

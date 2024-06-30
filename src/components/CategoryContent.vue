@@ -14,29 +14,14 @@
   </div>
   <div v-if="noItems" class="my-8 font-bold">
     <span class="text-gray-600 text-3xl">
-      Sorry but we can't find any {{ categoryName }}
+      Sorry but we can't find anything for "{{ categoryName }}"
     </span>
   </div>
   <div v-else>
-    <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 sm:mt-12 lg:px-8 lg:mt-12 bg-inherit -pt-24">
+    <div class="mx-auto max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl px-4 py-6 sm:px-6 sm:mt-12 lg:px-8 lg:mt-12 bg-inherit -pt-24">
       <div
-        class="mt-6 opacity-9 grid grid-cols-1 gap-y-10 sm:gap-x-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 lg:gap-x-0 justify-items-center">
-        <div v-for="item in categoryItems" :key="item.id"
-          class="group relative bg-white w-5/6 rounded-lg shadow-md pb-3">
-          <div class="h-56 w-full overflow-hidden rounded-md group-hover:opacity-75 lg:h-72 xl:h-80 ">
-            <img :src="'/images/' + item.imageSrc" :alt="item.imageAlt"
-              class="h-full w-full object-cover object-center" />
-          </div>
-          <h3 class="mt-4 text-sm text-gray-700">
-            <a @click="openModal(item)" type="button">
-              <span class="absolute inset-0"></span>
-              {{ item.name }}
-            </a>
-          </h3>
-          <p class="mt-1 text-sm font-medium text-gray-900">
-            {{ itemCurrency + item.price[itemCurrency] }}
-          </p>
-        </div>
+        class="mt-6 opacity-9 grid grid-cols-1 gap-y-10 sm:gap-x-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 lg:gap-x-0 justify-items-centerr">
+        <ItemCards :items="categoryItems" :itemCurrency="itemCurrency" @openModal="openModal" />
       </div>
     </div>
     <ItemDialog :isOpen="open" :item="selectedItem" :itemCurrency="itemCurrency" @update:isOpen="open = $event" />
@@ -49,6 +34,7 @@ import { useRoute } from 'vue-router';
 import itemsData from '@/assets/data/items.json';
 import categoriesData from '@/assets/data/categories.json';
 import ItemDialog from './ItemDialog.vue';
+import ItemCards from './ItemCards.vue';
 
 const categoryImageSrc = computed(() => {
   const category = categoriesData.find(category => category.name === categoryName.value);
