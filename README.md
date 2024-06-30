@@ -19,6 +19,10 @@ They will be partially displayed with the rest shown on a seperate page for each
 
 The items can be filtered by category and by Milk/Parve status.
 
+### Search
+
+users van search for items using the search bar, accuracy may vary.
+
 ## How items and categories will be added:
 
 Items will only be added by developers, by pulling the repo and running the site locally.
@@ -45,10 +49,6 @@ when the deploys gets built; see [package.json](/package.json) and [netlify.toml
 - The site will not have any ordering logic; there will only be contact info and
   item info.
 - The site will not have any kind of payment functionality.
-
-## The site might have
-
-- The site might have a search function but limited to the front end
 
 ## Other info about this project
 

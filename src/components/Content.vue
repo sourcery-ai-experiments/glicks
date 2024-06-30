@@ -33,7 +33,7 @@
                 This is what we found for you
               </h2>
             </div>
-            <div
+            <div 
               class="mt-6 opacity-9 grid grid-cols-1 gap-y-10 sm:gap-x-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 lg:gap-x-0 justify-items-center">
               <div v-for="item in displayResults" :key="item.id"
                 class="group relative bg-white w-5/6 rounded-lg shadow-md pb-3">
@@ -48,7 +48,7 @@
                   </a>
                 </h3>
                 <p class="mt-1 text-sm font-medium text-gray-900">
-                  {{ itemCurrency + item.price[itemCurrency] }}
+                  {{ itemCurrency }} {{ item.price[itemCurrency] }}
                 </p>
               </div>
             </div>
@@ -121,9 +121,9 @@ const selectedSort = ref({})
 const selectedCategories = ref([])
 const selectedMilkOptions = ref("")
 const searchResults = inject('searchResults');
-const displayResults = ref([])
-const searching = ref(false)
-const searchNoItems = ref(false)
+const displayResults = ref([]);
+const searching = ref(false);
+const searchNoItems = ref(false);
 function handleSortUpdate(option) {
   selectedSort.value = option;
 }
@@ -140,38 +140,17 @@ function handleCategoriesUpdate(categories) {
   }
 }
 
-function handleSearch(search) {
-  if (!items.value) return [];
-  // return all items that id equals one of search.unique
-  // Sort the items according to search.matchType 'exact', 'secondary', 'fuzzy'
-  results.sort((a, b) => {
-    if (search.matchType === 'exact') {
-      return a.name.localeCompare(b.name);
-    } else if (search.matchType === 'secondary') {
-      return a.secondaryName.localeCompare(b.secondaryName);
-    } else if (search.matchType === 'fuzzy') {
-      return a.name.localeCompare(b.name);
-    }
-  });
-  searching.value = true;
-  searchResults.value = results;
-}
-
 watch(searchResults, (newVal) => {
   searching.value = true;
-  console.log(newVal)
-  if (newVal && newVal.unique.length > 0) {
-    console.log(newVal)
-    const results = items.value.filter(item => newVal.unique.includes(item.id));
-    // Logic for sort shall be implemented
-    // Log all names
-    console.log(results.forEach(item => item.name))
-    displayResults.value = results;
+  if (newVal.length > 0) {
+    // Iterate through all fuse results and extract items
+    displayResults.value = newVal.map(result => result.item);
+    console.log('Results: ', displayResults.value)
+    searchNoItems.value = false;
+    console.log('searchNoItems: ', searchNoItems.value);
+    console.log('searching: ', searching.value);
   } else {
-    console.log(newVal)
     searchNoItems.value = true;
-    console.log('searchNoItems: ', searchNoItems.value)
-    console.log('noItems: ', noItems.value)
   }
 })
 
